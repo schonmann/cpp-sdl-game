@@ -14,6 +14,8 @@ namespace core{
             SDL_Renderer * renderer;
 
             SDLCore() {
+                SDL_Init(SDL_INIT_EVERYTHING);
+                
                 this->window = CoreFactory::getWindow();
                 this->renderer = CoreFactory::getRenderer(this->window);
             }
