@@ -1,0 +1,15 @@
+#include <graphics_config.h>
+
+namespace config {
+    char * GAME_NAME = (char *)"Joguinho!";
+    int WINDOW_X = SDL_WINDOWPOS_UNDEFINED;
+    int WINDOW_Y = SDL_WINDOWPOS_UNDEFINED;
+    int WINDOW_WIDTH = 800;
+    int WINDOW_HEIGHT = 600;
+    int RENDERER_SCALE_X = 1;
+    int RENDERER_SCALE_Y = 1;
+    Uint32 WINDOW_FLAGS = SDL_WINDOW_SHOWN;
+    Uint32 RENDERER_FLAGS = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
+    int MAX_FPS = 60;
+    int TICKS_PER_FRAME = 1000/MAX_FPS;
+}

@@ -1,10 +1,12 @@
-#include <iostream>
-#include "core/sdl.cpp"
 #include <SDL2/SDL.h>
+#include <game.h>
+#include <engine.h>
 
-using namespace std;
+using namespace core;
 
 int main(int argc, char *argv[]) {
-    core::SDLCore core = core::SDLCore::Instance();
+
+    Engine::Run(game::Game::Instance());
+    
     return 0;
 }
