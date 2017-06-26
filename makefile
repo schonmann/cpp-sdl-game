@@ -1,13 +1,15 @@
-run: game
+run: game cleanup
 	./game
 
-game: cleanup abstract_game.o play_scene.o graphics.o game_object.o main.o engine.o graphics_config.o game.o
+game: abstract_game.o play_scene.o graphics.o game_object.o main.o engine.o graphics_config.o game.o
 	g++ -o game abstract_game.o play_scene.o graphics.o game_object.o main.o engine.o graphics_config.o game.o -lSDL2 -lSDL2_image
-debug: cleanup abstract_game.o play_scene.o graphics.o game_object.o main.o engine.o graphics_config.o game.o
+debug: abstract_game.o play_scene.o graphics.o game_object.o main.o engine.o graphics_config.o game.o
 	g++ -o game abstract_game.o play_scene.o graphics.o game_object.o main.o engine.o graphics_config.o game.o -DDEBUG -lSDL2 -lSDL2_image
 	
 # TODO: Bash script to generate all .cpp files .o correspondant object files.
 
+cleanup:
+	rm *.o
 main.o:
 	g++ -c src/main.cpp -Iinclude
 abstract_game.o:
@@ -24,6 +26,3 @@ engine.o:
 	g++ -c src/core/engine.cpp -Iinclude
 graphics_config.o:
 	g++ -c src/config/graphics_config.cpp -Iinclude
-
-cleanup:
-	rm *.o
