@@ -6,10 +6,8 @@ using namespace std;
 namespace scene{
     
     PlayScene::PlayScene() {
-        cout << "asasas" << endl;
     };
 
     PlayScene::~PlayScene() {
-        cout << "asasas" << endl;
     };
 }

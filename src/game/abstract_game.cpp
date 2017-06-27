@@ -1,6 +1,10 @@
 #include <abstract_game.h>
+#include <iostream>
+
+using namespace std;
 
 namespace game {
+
     AbstractGame::AbstractGame() {
         this->running = true;
         this->paused = false;
@@ -24,5 +28,17 @@ namespace game {
 
     void AbstractGame::setScene(scene::AbstractScene * scene) {
         this->scene = scene;
+    };
+
+    void AbstractGame::init() {
+        cout << "AbstractGame: Initialized!" << endl;
+    };
+
+    void AbstractGame::update(Uint32 dt, const Uint8 *input) {
+        this->scene->update(dt,input);
+    };
+
+    void AbstractGame::draw(core::Renderer * renderer) {
+        this->scene->draw(renderer);
     };
 }

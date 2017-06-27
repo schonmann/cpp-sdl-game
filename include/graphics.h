@@ -1,9 +1,10 @@
 #pragma once
 
+#include <renderer.h>
 #include <SDL2/SDL.h>
 
 namespace core{
-    class SDLGraphics {
+    class SDLGraphics : public Renderer {
         private:
             bool batching;
             SDL_Window * window;

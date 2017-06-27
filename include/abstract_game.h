@@ -16,9 +16,9 @@ namespace game{
             scene::AbstractScene * currentScene();
         public:
             bool isRunning();
-            virtual void init() = 0;
-            virtual void update(Uint32 dt, const Uint8 *input) = 0;
-            virtual void draw(core::SDLGraphics * graphics) = 0;
+            virtual void init();
+            virtual void update(Uint32 dt, const Uint8 *input);
+            virtual void draw(core::Renderer * renderer);
             void setPaused(bool paused);
             void setRunning(bool running);
     };

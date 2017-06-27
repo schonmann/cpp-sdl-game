@@ -56,5 +56,5 @@ namespace core {
     void Engine::Run(game::AbstractGame *game) {
         static Engine * instance = new Engine(game);
         instance->StartGameLoop();
-    }
+    };
 }

@@ -1,5 +1,5 @@
 #include <abstract_game.h>
-#include <graphics.h>
+#include <renderer.h>
 #include <play_scene.h>
 
 namespace game {
@@ -10,7 +10,7 @@ namespace game {
         public:
             static Game *Instance();
             void init();
-            void update(Uint32 dt, const Uint8 *input);
-            void draw(core::SDLGraphics * graphics);
+            // void update(Uint32 dt, const Uint8 *input);
+            // void draw(core::Renderer * renderer);
     };
 }
