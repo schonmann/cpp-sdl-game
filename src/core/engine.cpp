@@ -16,10 +16,9 @@ namespace core {
         while(game->isRunning()) 
         {
             Uint32 dt = SDL_GetTicks() - lastTick;
-            const Uint8 *input = SDL_GetKeyboardState(NULL);
             lastTick = SDL_GetTicks();
 
-            game->update(dt, input);
+            game->update(dt, SDL_GetKeyboardState(NULL));
             
             this->graphics->startBatch();
 
