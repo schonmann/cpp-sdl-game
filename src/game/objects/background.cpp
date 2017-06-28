@@ -9,9 +9,22 @@ using namespace std;
 namespace model {
 
     Background::Background() {
-        AbstractObject * o = new AbstractObject();
-        o->loadTexture(assets::BACKGROUND_L1);
-        this->backgroundLayers.push_back(o);
+        AbstractObject * l1 = new AbstractObject();
+        AbstractObject * l2 = new AbstractObject();
+        AbstractObject * l3 = new AbstractObject();
+
+        l1->loadTexture(assets::BACKGROUND_L1);
+        l1->setLayer(1);
+
+        l2->loadTexture(assets::BACKGROUND_L2); 
+        l2->setLayer(2);
+
+        l3->loadTexture(assets::BACKGROUND_L3);
+        l3->setLayer(3);
+
+        this->backgroundLayers.push_back(l1);
+        this->backgroundLayers.push_back(l2);
+        this->backgroundLayers.push_back(l3);
     };
 
     Background::~Background() {
@@ -25,9 +38,10 @@ namespace model {
     void Background::draw(Renderer * renderer) {
         for(int i = 0; i < this->backgroundLayers.size(); i++) {
             renderer->batchRender(
-                this->backgroundLayers[i]->getTexture(), 
-                this->backgroundLayers[i]->getSrcRect(), 
-                this->backgroundLayers[i]->getDestRect());
+                this->backgroundLayers[i]->getTexture(),
+                this->backgroundLayers[i]->getSrcRect(),
+                this->backgroundLayers[i]->getDestRect()
+            );
         }
     };
 

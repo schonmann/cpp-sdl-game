@@ -9,6 +9,8 @@ namespace model {
             int w, h;
             int dx,dy;
             int ddx,ddy;
+            int layer;
+            
             SDL_Texture * texture;
 
             AbstractObject();
@@ -20,5 +22,6 @@ namespace model {
             virtual SDL_Rect * getSrcRect();
             virtual SDL_Rect * getDestRect();
             virtual void loadTexture(std::string path);
+            virtual void setLayer(int layer);
     };
 }

@@ -8,9 +8,10 @@ using namespace model;
 namespace scene{
     
     PlayScene::PlayScene() {
-        this->objects["background"] = new Background();
+        this->objects["00_background"] = new Background();
     };
 
     PlayScene::~PlayScene() {
+        
     };
 }
