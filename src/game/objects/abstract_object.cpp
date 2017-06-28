@@ -1,30 +1,38 @@
+#include <iostream>
+#include <SDL2/SDL_image.h>
+#include <graphics.h>
 #include <abstract_object.h>
+
+using namespace core;
+using namespace std;
 
 namespace model {
     AbstractObject::AbstractObject() {
+
     };
 
     AbstractObject::~AbstractObject() {
     };
 
-    void AbstractObject::draw(core::Renderer *renderer) {
-        //...
+    void AbstractObject::draw(Renderer *renderer) {
+        renderer->batchRender(this->getTexture(),
+            this->getSrcRect(),
+            this->getDestRect());
     };
 
     void AbstractObject::update(Uint32 dt, const Uint8 * input) {
         //...
     };
 
-
-    SDL_Texture * AbstractObject::getTexture(){
+    SDL_Texture * AbstractObject::getTexture() {
         return this->texture;
     };
 
-    SDL_Rect * AbstractObject::getSrcRect(){
+    SDL_Rect * AbstractObject::getSrcRect() {
         return NULL;
     };
 
-    SDL_Rect * AbstractObject::getDestRect(){
+    SDL_Rect * AbstractObject::getDestRect() {
         static SDL_Rect destination;
         destination.x = this->x;
         destination.y = this->y;
@@ -33,4 +41,11 @@ namespace model {
         return &destination;
     };
 
+    void AbstractObject::loadTexture(string path) {
+        SDL_Surface * surface = IMG_Load(path.c_str());
+        SDL_Renderer * renderer = SDLGraphics::getInstance()->getRenderer();
+        this->texture = SDL_CreateTextureFromSurface(renderer, surface);
+        this->w = surface->w;
+        this->h = surface->h;
+    };
 }

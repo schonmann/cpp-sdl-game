@@ -2,17 +2,5 @@
 #include <vector>
 
 namespace assets {
-
-    Assets::Assets() {
-
-    };
-
-    Assets::~Assets() {
-
-    };
-    
-    Assets& Assets::Instance() {
-        static Assets * instance = new Assets();
-        return *instance;
-    };
+    string BACKGROUND_L1 = "./res/bg0.png";
 }

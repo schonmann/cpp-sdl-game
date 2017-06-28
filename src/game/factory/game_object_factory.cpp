@@ -4,12 +4,12 @@ using namespace std;
 using namespace model;
 
 namespace factory {
-    AbstractObject * getPlayer() {
 
+    AbstractObject * getPlayer() {
+        
     };
     
     vector<AbstractObject> getBackgroundLayers() {
         vector<AbstractObject> v;
-
     };
 }

@@ -1,17 +1,23 @@
 #pragma once
 
 #include <abstract_object.h>
+#include <graphics.h>
 #include <string>
 #include <map>
-#include <graphics.h>
 
+using namespace std;
+using namespace core;
+using namespace model;
+
+typedef map<string,AbstractObject*>::iterator gameObjIter;
 
 namespace scene{
     class AbstractScene{
         protected:
-            std::map<std::string, model::AbstractObject> objects;
+            map<string, AbstractObject*> objects;
         public:
-            void draw(core::Renderer * renderer);
-            void update(Uint32 dt, const Uint8 * input);
+            virtual void draw(Renderer * renderer);
+            virtual void update(Uint32 dt, const Uint8 * input);
+            void addObject(AbstractObject * newObject);
     };
 }

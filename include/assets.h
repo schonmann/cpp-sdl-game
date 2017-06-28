@@ -1,17 +1,12 @@
 #pragma once
 
+#include <string>
 #include <graphics.h>
 #include <vector>
 
 using namespace core;
+using namespace std;
 
 namespace assets{
-    class Assets {
-        public:
-            Assets();
-            ~Assets();
-            static Assets& Instance();
-        private:
-            SDLGraphics * graphics;
-    };
+    extern string BACKGROUND_L1;
 }

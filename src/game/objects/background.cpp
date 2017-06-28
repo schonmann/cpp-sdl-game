@@ -1,4 +1,6 @@
+#include <iostream>
 #include <vector>
+#include <assets.h>
 #include <abstract_object_factory.h>
 #include <background.h>
 
@@ -8,11 +10,12 @@ namespace model {
 
     Background::Background() {
         AbstractObject * o = new AbstractObject();
+        o->loadTexture(assets::BACKGROUND_L1);
         this->backgroundLayers.push_back(o);
     };
 
     Background::~Background() {
-
+        
     };
 
     void Background::addLayer(AbstractObject *bgLayer) {

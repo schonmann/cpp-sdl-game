@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include <renderer.h>
 
 namespace model {
@@ -18,5 +19,6 @@ namespace model {
             virtual SDL_Texture * getTexture();
             virtual SDL_Rect * getSrcRect();
             virtual SDL_Rect * getDestRect();
+            virtual void loadTexture(std::string path);
     };
 }

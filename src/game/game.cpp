@@ -12,6 +12,7 @@ namespace game {
         scene::PlayScene * s = new scene::PlayScene();
         this->setScene(s);
     };
+
     Game *Game::Instance() {
         static Game *instance = new Game();
         return instance;

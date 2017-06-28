@@ -10,7 +10,7 @@ namespace game {
         this->paused = false;
     };
     
-    void AbstractGame::setPaused(bool paused){
+    void AbstractGame::setPaused(bool paused) {
         this->paused = paused;
     };
     
@@ -18,7 +18,7 @@ namespace game {
         this->running = running;
     };
     
-    bool AbstractGame::isRunning(){
+    bool AbstractGame::isRunning() {
         return this->running;
     };
 
@@ -35,7 +35,8 @@ namespace game {
     };
 
     void AbstractGame::update(Uint32 dt, const Uint8 *input) {
-        this->scene->update(dt,input);
+        if(this->scene == NULL) cout << "NULL!" << endl;
+        if(!this->paused) this->scene->update(dt, input);
     };
 
     void AbstractGame::draw(core::Renderer * renderer) {

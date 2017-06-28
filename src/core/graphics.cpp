@@ -21,7 +21,7 @@ void SDLGraphics::setScale(float x, float y) {
 
 SDLGraphics::SDLGraphics() {
     
-    int err = SDL_Init(SDL_INIT_EVERYTHING);
+    int err = SDL_Init(config::SDL_INIT_FLAGS);
 
     assert(err == 0);
 
@@ -34,7 +34,11 @@ SDLGraphics::SDLGraphics() {
     assert(this->renderer != NULL);
 
     this->setScale(config::RENDERER_SCALE_X, config::RENDERER_SCALE_Y);
+    
+    int imgLoadSuccess = (IMG_Init(config::IMG_FLAGS) & config::IMG_FLAGS) == config::IMG_FLAGS;
 
+    assert(imgLoadSuccess);
+    
     this->batching = false;
 };
 
@@ -63,11 +67,15 @@ void SDLGraphics::endBatch() {
     assert(this->batching == true);
 
     SDL_RenderPresent(renderer);
-
+    
     this->batching = false;
 };
 
-SDLGraphics *SDLGraphics::getInstance(){
+SDLGraphics *SDLGraphics::getInstance() {
     static SDLGraphics *instance = new SDLGraphics();
     return instance;
+};
+
+SDL_Renderer * SDLGraphics::getRenderer() {
+    return this->renderer;
 };

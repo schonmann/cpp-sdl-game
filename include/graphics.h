@@ -18,6 +18,7 @@ namespace core{
             void startBatch();
             void batchRender(SDL_Texture * texture, SDL_Rect * src, SDL_Rect * dest);
             void endBatch();
+            SDL_Renderer * getRenderer();
             ~SDLGraphics();
     };
 }
