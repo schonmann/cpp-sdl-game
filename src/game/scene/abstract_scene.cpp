@@ -1,12 +1,6 @@
 #include <graphics.h>
 #include <abstract_scene.h>
 
-typedef struct drawPriority{
-    bool operator()(const AbstractObject& a, const AbstractObject& b) const {
-        return a.layer > b.layer;
-    }
-} drawPriority;
-
 namespace scene{
 
     void AbstractScene::draw(core::Renderer * renderer) {
