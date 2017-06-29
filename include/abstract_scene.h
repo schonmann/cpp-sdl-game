@@ -9,7 +9,7 @@ using namespace std;
 using namespace core;
 using namespace model;
 
-struct drawPriority;
+typedef struct drawPriority drawPriority;
 typedef map<string, AbstractObject*, struct drawPriority>::iterator gameObjIter;
 
 namespace scene{
