@@ -9,13 +9,7 @@ using namespace std;
 using namespace core;
 using namespace model;
 
-struct drawPriority{
-    bool operator()(const string& a, const string& b) const {
-        return a.length() > b.length();
-    }
-};
-
-typedef map<string, AbstractObject*, drawPriority>::iterator gameObjIter;
+typedef map<string, AbstractObject*, less<string>>::iterator gameObjIter;
 
 namespace scene{
     class AbstractScene{
