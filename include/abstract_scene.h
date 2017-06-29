@@ -10,8 +10,8 @@ using namespace core;
 using namespace model;
 
 struct drawPriority{
-    bool operator()(const AbstractObject& a, const AbstractObject& b) const {
-        return a.getLayer() > b.getLayer();
+    bool operator()(const string& a, const string& b) const {
+        return a.length() > b.length();
     }
 };
 
@@ -20,7 +20,7 @@ typedef map<string, AbstractObject*, drawPriority>::iterator gameObjIter;
 namespace scene{
     class AbstractScene{
         protected:
-            map<string, AbstractObject*, struct drawPriority> objects;
+            map<string, AbstractObject*, drawPriority> objects;
         public:
             virtual void draw(Renderer * renderer);
             virtual void update(Uint32 dt, const Uint8 * input);
