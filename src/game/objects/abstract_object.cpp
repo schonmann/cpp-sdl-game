@@ -55,6 +55,10 @@ namespace model {
 		return this;
     };
 
+    int * AbstractObject::getLayer() {
+        return this->layer;
+    };
+
     AbstractObject * AbstractObject::setLayer(int layer) {
         this->layer = layer;
 		return this;

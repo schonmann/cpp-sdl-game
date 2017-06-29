@@ -23,6 +23,7 @@ namespace model {
             virtual SDL_Rect * getDestRect();
             virtual AbstractObject * loadTexture(std::string path);
             virtual AbstractObject * setLayer(int layer);
+            virtual int * getLayer();
 			virtual AbstractObject * setX(int x);
 			virtual AbstractObject * setY(int y);
 			virtual AbstractObject * setDX(int dx);

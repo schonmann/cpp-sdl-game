@@ -11,7 +11,7 @@ using namespace model;
 
 struct drawPriority{
     bool operator()(const AbstractObject& a, const AbstractObject& b) const {
-        return a.layer > b.layer;
+        return a.getLayer() > b.getLayer();
     }
 };
 
