@@ -15,7 +15,7 @@ struct drawPriority{
     }
 };
 
-typedef map<string, AbstractObject*, struct drawPriority>::iterator gameObjIter;
+typedef map<string, AbstractObject*, drawPriority>::iterator gameObjIter;
 
 namespace scene{
     class AbstractScene{
