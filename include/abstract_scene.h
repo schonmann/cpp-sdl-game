@@ -9,12 +9,13 @@ using namespace std;
 using namespace core;
 using namespace model;
 
-typedef map<string,AbstractObject*>::iterator gameObjIter;
+struct drawPriority;
+typedef map<string, AbstractObject*, struct drawPriority>::iterator gameObjIter;
 
 namespace scene{
     class AbstractScene{
         protected:
-            map<string, AbstractObject*> objects;
+            map<string, AbstractObject*, struct drawPriority> objects;
         public:
             virtual void draw(Renderer * renderer);
             virtual void update(Uint32 dt, const Uint8 * input);

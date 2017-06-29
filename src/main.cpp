@@ -5,7 +5,7 @@
 using namespace core;
 
 int main(int argc, char *argv[]) {
-
+    
     Engine::Run(game::Game::Instance());
     
     return 0;

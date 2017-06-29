@@ -16,6 +16,8 @@ namespace model {
         this->backgroundLayers.push_back(l1);
         this->backgroundLayers.push_back(l2);
         this->backgroundLayers.push_back(l3);
+
+        this->setLayer(0);
     };
 
     Background::~Background() {
