@@ -31,16 +31,21 @@ namespace model {
             virtual AbstractObject * loadTexture(char * path);
             virtual AbstractObject * setLayer(int layer);
             virtual int getLayer();
+
 			virtual AbstractObject * setX(int x);
             virtual int getX();
+            
             virtual AbstractObject * addX(int x);
 
 			virtual AbstractObject * setSX(double sx);
             virtual double getSX();
+
 			virtual AbstractObject * setSY(double sy);
             virtual double getSY();
 
 			virtual AbstractObject * setY(int y);
+            virtual int getY();
+
 			virtual AbstractObject * setDX(double dx);
             virtual int getDX();
 			virtual AbstractObject * setDY(double dy);

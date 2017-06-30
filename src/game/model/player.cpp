@@ -10,7 +10,7 @@ namespace model {
     Player::~Player() {
 
     };
-    
+
     void Player::update(float dt, const Uint8 * input) {
 
     };

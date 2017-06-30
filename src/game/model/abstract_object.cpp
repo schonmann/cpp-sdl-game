@@ -59,10 +59,10 @@ namespace model {
     SDL_Rect * AbstractObject::getDestRect() {
         static SDL_Rect destination;
 
-        destination.x = this->x;
-        destination.y = this->y;
-        destination.w = this->w;
-        destination.h = this->h;
+        destination.x = this->getX();
+        destination.y = this->getY();
+        destination.w = this->getWidth();
+        destination.h = this->getHeight();
 
         return &destination;
     };
@@ -126,6 +126,10 @@ namespace model {
         this->y = y;
 		return this;
     };
+    
+    int AbstractObject::getY() {
+        return this->y;
+    };
 
 	AbstractObject * AbstractObject::setDX(double dx) {
         this->dx = dx;
@@ -152,20 +156,20 @@ namespace model {
     };
 
 	AbstractObject * AbstractObject::setWidth(int w) {
-        this->w = w;
+        this->w = w * this->sx;
 		return this;
     };
 
     int AbstractObject::getWidth() {
-        return this->w;
+        return this->w * this->sx;
     };
 
 	AbstractObject * AbstractObject::setHeight(int h) {
-        this->h = h;
+        this->h = h * this->sy;
 		return this;
     };
 
     int AbstractObject::getHeight() {
-        return this->h;
+        return this->h * this->sy;
     };
 }

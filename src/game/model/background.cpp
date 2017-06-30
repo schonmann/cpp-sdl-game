@@ -41,10 +41,7 @@ namespace model {
         for(int i = 0; i < this->backgroundLayers.size(); i++) {
             AbstractObject * layer = this->backgroundLayers[i];
             SDL_Rect dest = *layer->getDestRect();
-
-            dest.w *= layer->getSX();
-            dest.h *= layer->getSY();
-
+            
             //Draw center.
 
             renderer->batchRender(
