@@ -17,6 +17,10 @@ namespace model {
             Vector2 bounds_ddx,bounds_ddy;
 
             int layer;
+
+        protected:
+            virtual void updateXMotion(float dt);
+            virtual void updateYMotion(float dt);
         public:
             SDL_Texture * texture;
 

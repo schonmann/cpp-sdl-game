@@ -37,15 +37,34 @@ namespace model {
     
     //Apply physics behavior to all abstract objects, by default.
     //If any inherited object is not intended to follow these rules, override this.
-    void AbstractObject::update(float dt, const Uint8 * input) {
 
+    void AbstractObject::update(float dt, const Uint8 *input) {
+        this->updateXMotion(dt);
+        this->updateYMotion(dt);
+    };
+
+    void AbstractObject::updateXMotion(float dt) {
         this->ddx = util::clamp(this->ddx, bounds_ddx.getA(), bounds_ddx.getB());
 
         this->dx += this->ddx * dt;
+
         this->dx = util::clamp(this->dx, bounds_dx.getA(), bounds_dx.getB());
 
         this->x += round(this->dx * dt);
+
         this->dx = util::clamp(this->dx, bounds_x.getA(), bounds_x.getB());
+    };
+
+    void AbstractObject::updateYMotion(float dt) {
+        this->ddy = util::clamp(this->ddy, bounds_ddy.getA(), bounds_ddy.getB());
+
+        this->dx += this->ddy * dt;
+
+        this->dy = util::clamp(this->dy, bounds_dy.getA(), bounds_dy.getB());
+
+        this->y += round(this->dy * dt);
+
+        this->dy = util::clamp(this->dy, bounds_y.getA(), bounds_y.getB());
     };
 
     SDL_Texture * AbstractObject::getTexture() {
