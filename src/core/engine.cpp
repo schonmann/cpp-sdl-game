@@ -15,7 +15,7 @@ namespace core {
 
         while(game->isRunning()) 
         {
-            Uint32 dt = SDL_GetTicks() - lastTick;
+            float dt = (SDL_GetTicks() - lastTick);
             lastTick = SDL_GetTicks();
 
             game->update(dt, SDL_GetKeyboardState(NULL));
@@ -30,8 +30,8 @@ namespace core {
             printf("AVG: %f\n", frameCount/(SDL_GetTicks()/1000.0f));
             #endif
 
-            if(SDL_GetTicks() - lastTick < config::TICKS_PER_FRAME) {
-                SDL_Delay(config::TICKS_PER_FRAME - (SDL_GetTicks() -  lastTick));
+            if(SDL_GetTicks() - lastTick < graphicsConfig::TICKS_PER_FRAME) {
+                SDL_Delay(graphicsConfig::TICKS_PER_FRAME - (SDL_GetTicks() -  lastTick));
             }
 
             frameCount++;

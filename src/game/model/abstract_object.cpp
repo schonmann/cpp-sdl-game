@@ -2,6 +2,9 @@
 #include <SDL2/SDL_image.h>
 #include <graphics.h>
 #include <abstract_object.h>
+#include <graphics_config.h>
+#include <player_config.h>
+#include <util.h>
 
 using namespace core;
 using namespace std;
@@ -9,12 +12,12 @@ using namespace std;
 namespace model {
 
     AbstractObject::AbstractObject() {
-        this->x = 0;
-        this->y = 0;
-        this->dx = 0;
-        this->dy = 0;
-        this->ddx = 0;
-        this->ddy = 0;
+        this->x = 0; this->bounds_x.set(0, graphicsConfig::WINDOW_WIDTH);
+        this->y = 0; this->bounds_y.set(0, graphicsConfig::WINDOW_HEIGHT);
+        this->dx = 0; this->bounds_dx.set(-playerConfig::MAX_DX, +playerConfig::MAX_DX);
+        this->dy = 0; this->bounds_dy.set(-playerConfig::MAX_DY, +playerConfig::MAX_DY);
+        this->ddx = 0; this->bounds_ddx.set(-playerConfig::MAX_DDX, +playerConfig::MAX_DDX);
+        this->ddy = 0; this->bounds_ddy.set(-playerConfig::MAX_DDY, +playerConfig::MAX_DDY);
         this->w = 0;
         this->h = 0;
         this->texture = NULL;
@@ -29,9 +32,18 @@ namespace model {
             this->getSrcRect(),
             this->getDestRect());
     };
+    
+    //Apply physics behavior to all abstract objects, by default.
+    //If any inherited object is not intended to follow these rules, override this.
+    void AbstractObject::update(float dt, const Uint8 * input) {
 
-    void AbstractObject::update(Uint32 dt, const Uint8 * input) {
-        //...
+        this->ddx = util::clamp(this->ddx, bounds_ddx.getA(), bounds_ddx.getB());
+
+        this->dx += this->ddx * dt;
+        this->dx = util::clamp(this->dx, bounds_dx.getA(), bounds_dx.getB());
+
+        this->x += round(this->dx * dt);
+        this->dx = util::clamp(this->dx, bounds_x.getA(), bounds_x.getB());
     };
 
     SDL_Texture * AbstractObject::getTexture() {
@@ -53,14 +65,17 @@ namespace model {
         return &destination;
     };
 
-    AbstractObject * AbstractObject::loadTexture(string path) {
-        SDL_Surface * surface = IMG_Load(path.c_str());
+    AbstractObject * AbstractObject::loadTexture(char * path) {
+        SDL_Surface * surf = IMG_Load(path);
         SDL_Renderer * renderer = SDLGraphics::getInstance()->getRenderer();
-        
-        this->w = surface->w;
-        this->h = surface->h;
 
-        this->texture = SDL_CreateTextureFromSurface(renderer, surface);
+        this->w = surf->w;
+        this->h = surf->h;
+
+        this->texture = SDL_CreateTextureFromSurface(renderer, surf);
+
+        SDL_FreeSurface(surf);
+
 		return this;
     };
 
@@ -78,27 +93,39 @@ namespace model {
 		return this;
     };
 
+    int AbstractObject::getX() {
+        return this->x;
+    }
+
+    void AbstractObject::addX(int dx) {
+        this->x += dx;
+    }
+
 	AbstractObject * AbstractObject::setY(int y) {
         this->y = y;
 		return this;
     };
 
-	AbstractObject * AbstractObject::setDX(int dx) {
+	AbstractObject * AbstractObject::setDX(double dx) {
         this->dx = dx;
 		return this;
     };
 
-	AbstractObject * AbstractObject::setDY(int dy) {
+    int AbstractObject::getDX() {
+        return this->dx;
+    }
+
+	AbstractObject * AbstractObject::setDY(double dy) {
         this->dy = dy;
 		return this;
     };
 	
-	AbstractObject * AbstractObject::setDDX(int ddx) {
+	AbstractObject * AbstractObject::setDDX(double ddx) {
         this->ddx = ddx;
 		return this;
     };
 
-	AbstractObject * AbstractObject::setDDY(int ddy) {
+	AbstractObject * AbstractObject::setDDY(double ddy) {
         this->ddy = ddy;
 		return this;
     };
@@ -107,6 +134,10 @@ namespace model {
         this->w = w;
 		return this;
     };
+
+    int AbstractObject::getWidth() {
+        return this->w;
+    }
 
 	AbstractObject * AbstractObject::setHeight(int h) {
         this->h = h;

@@ -1,6 +1,6 @@
 #include <graphics_config.h>
 
-namespace config {
+namespace graphicsConfig {
     char * GAME_NAME = (char *)"Joguinho!";
     int WINDOW_X = SDL_WINDOWPOS_UNDEFINED;
     int WINDOW_Y = SDL_WINDOWPOS_UNDEFINED;

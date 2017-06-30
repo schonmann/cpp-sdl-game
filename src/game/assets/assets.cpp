@@ -2,8 +2,10 @@
 #include <vector>
 
 namespace assets {
-    string BACKGROUND_L1 = "./res/bg0.png";
-    string BACKGROUND_L2 = "./res/bg1.png";
-    string BACKGROUND_L3 = "./res/bg2.png";
-    string BACKGROUND_L4 = "./res/bg3.png";
+    char * BACKGROUND_LAYERS[] = { 
+        (char*)"./res/bg0.png", 
+        (char*)"./res/bg1.png", 
+        (char*)"./res/bg2.png", 
+        (char*)"./res/bg3.png" 
+    };
 }

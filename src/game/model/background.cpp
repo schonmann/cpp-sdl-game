@@ -4,6 +4,8 @@
 #include <assets.h>
 #include <background.h>
 #include <graphics_config.h>
+#include <background_config.h>
+#include <math.h>
 
 using namespace std;
 
@@ -11,41 +13,75 @@ namespace model {
 
     Background::Background() {
         this->setLayer(0);
-        this->addLayer(assets::BACKGROUND_L1)->
-            addLayer(assets::BACKGROUND_L2)->
-            addLayer(assets::BACKGROUND_L3)->
-            addLayer(assets::BACKGROUND_L4);
+        for(int i = 0; i < backgroundConfig::NUM_LAYERS; i++) {
+            this->addLayer(assets::BACKGROUND_LAYERS[i], 
+                backgroundConfig::LAYER_DX_MULTIPLIER[i]);
+        }
     };
 
     Background::~Background() {
         for_each(this->backgroundLayers.begin(), this->backgroundLayers.end(), free);
     };
 
-    Background * Background::addLayer(string path) {
-        AbstractObject * object = (new AbstractObject())->loadTexture(path)->setLayer(0);
+    Background * Background::addLayer(char * path, float dx) {
+        AbstractObject * object = (new AbstractObject())->loadTexture(path)->setLayer(0)->setDX(dx);
         this->backgroundLayers.push_back(object);
 		return this;
     };
 
     void Background::draw(Renderer * renderer) {
         for(int i = 0; i < this->backgroundLayers.size(); i++) {
-            SDL_Rect * dest = this->backgroundLayers[i]->getDestRect();
+            AbstractObject * layer = this->backgroundLayers[i];
+            SDL_Rect dest = *layer->getDestRect();
             
-            float multx = config::WINDOW_WIDTH / (float) dest->w;
-            float multy = config::WINDOW_HEIGHT / (float) dest->h;
-            
-            dest->w *= multx;
-            dest->h *= multy;
+            float multx = graphicsConfig::WINDOW_WIDTH / (float) dest.w;
+            float multy = graphicsConfig::WINDOW_HEIGHT / (float) dest.h;
+
+            dest.w *= multx;
+            dest.h *= multy;
+
+            //Draw center.
 
             renderer->batchRender(
-                this->backgroundLayers[i]->getTexture(),
-                this->backgroundLayers[i]->getSrcRect(),
-                dest
+                layer->getTexture(),
+                layer->getSrcRect(),
+                &dest
+            );
+
+            //Draw left.
+
+            dest.x = layer->getX() - dest.w;
+            
+            renderer->batchRender(
+                layer->getTexture(),
+                layer->getSrcRect(),
+                &dest
+            );
+
+            //Draw right.
+
+            dest.x = layer->getX() + dest.w;
+
+            renderer->batchRender(
+                layer->getTexture(),
+                layer->getSrcRect(),
+                &dest
             );
         }
     };
 
-    void Background::update(Uint32 dt, const Uint8 * input) {
-       //...
+    void Background::update(float dt, const Uint8 * input) {
+        AbstractObject * referential = this->referential;
+        
+        if(referential == NULL) return;
+
+        for(int i = 0; i < this->backgroundLayers.size(); i++) {
+            AbstractObject * layer = this->backgroundLayers[i];
+
+            layer->addX(referential->getDX());
+
+            if(layer->getX() >= graphicsConfig::WINDOW_WIDTH || 
+                layer->getX() <= -graphicsConfig::WINDOW_WIDTH) layer->setX(0);
+        }
     };
 }

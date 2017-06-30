@@ -5,14 +5,14 @@
 using namespace core;
 
 SDL_Window * SDLGraphics::createWindow() {
-    return SDL_CreateWindow(config::GAME_NAME,
-        config::WINDOW_X, config::WINDOW_Y, 
-        config::WINDOW_WIDTH, config::WINDOW_HEIGHT, 
-        config::WINDOW_FLAGS);
+    return SDL_CreateWindow(graphicsConfig::GAME_NAME,
+        graphicsConfig::WINDOW_X, graphicsConfig::WINDOW_Y, 
+        graphicsConfig::WINDOW_WIDTH, graphicsConfig::WINDOW_HEIGHT, 
+        graphicsConfig::WINDOW_FLAGS);
 };
 
 SDL_Renderer * SDLGraphics::createRenderer(SDL_Window * window) {
-    return SDL_CreateRenderer(window, -1, config::RENDERER_FLAGS);
+    return SDL_CreateRenderer(window, -1, graphicsConfig::RENDERER_FLAGS);
 };
 
 void SDLGraphics::setScale(float x, float y) {
@@ -21,7 +21,7 @@ void SDLGraphics::setScale(float x, float y) {
 
 SDLGraphics::SDLGraphics() {
     
-    int err = SDL_Init(config::SDL_INIT_FLAGS);
+    int err = SDL_Init(graphicsConfig::SDL_INIT_FLAGS);
 
     assert(err == 0);
 
@@ -33,9 +33,9 @@ SDLGraphics::SDLGraphics() {
 
     assert(this->renderer != NULL);
 
-    this->setScale(config::RENDERER_SCALE_X, config::RENDERER_SCALE_Y);
+    this->setScale(graphicsConfig::RENDERER_SCALE_X, graphicsConfig::RENDERER_SCALE_Y);
     
-    int imgLoadSuccess = (IMG_Init(config::IMG_FLAGS) & config::IMG_FLAGS) == config::IMG_FLAGS;
+    int imgLoadSuccess = (IMG_Init(graphicsConfig::IMG_FLAGS) & graphicsConfig::IMG_FLAGS) == graphicsConfig::IMG_FLAGS;
 
     assert(imgLoadSuccess);
 

@@ -9,12 +9,14 @@ using namespace core;
 namespace model {
     class Background : public AbstractObject {
         private:
+            AbstractObject * referential;
             vector<AbstractObject*> backgroundLayers;
-            Background * addLayer(string path);
+            Background * addLayer(char * path, float dx);
+            Background * setReferential(AbstractObject * referential);
         public:
             Background();
             ~Background();
             void draw(Renderer * renderer);
-            void update(Uint32 dt, const Uint8 * input);
+            void update(float dt, const Uint8 * input);
     };
 }

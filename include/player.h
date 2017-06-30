@@ -12,6 +12,6 @@ namespace model {
             Player();
             ~Player();
             void draw(Renderer * renderer);
-            void update(Uint32 dt, const Uint8 * input);
+            void update(float dt, const Uint8 * input);
     };
 }

@@ -34,7 +34,7 @@ namespace game {
         cout << "AbstractGame: Initialized!" << endl;
     };
 
-    void AbstractGame::update(Uint32 dt, const Uint8 *input) {
+    void AbstractGame::update(float dt, const Uint8 *input) {
         if(this->scene == NULL) cout << "NULL!" << endl;
         if(!this->paused) this->scene->update(dt, input);
     };

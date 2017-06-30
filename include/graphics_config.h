@@ -3,7 +3,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL.h>
 
-namespace config {
+namespace graphicsConfig {
     extern char * GAME_NAME;
     extern int WINDOW_X;
     extern int WINDOW_Y;

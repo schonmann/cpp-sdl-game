@@ -17,7 +17,7 @@ namespace game{
         public:
             bool isRunning();
             virtual void init();
-            virtual void update(Uint32 dt, const Uint8 *input);
+            virtual void update(float dt, const Uint8 *input);
             virtual void draw(core::Renderer * renderer);
             void setPaused(bool paused);
             void setRunning(bool running);
