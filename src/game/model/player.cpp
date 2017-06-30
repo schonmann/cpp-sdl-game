@@ -5,10 +5,13 @@
 namespace model {
     
     Player::Player() {
-        this->loadTexture(assets::PLAYER);
-        this->setSX(2)->setSY(2);
-        this->setX(playerConfig::INITIAL_X - this->getWidth()/2);
-        this->setY(playerConfig::INITIAL_Y - this->getHeight()*1.5);
+
+        this->loadTexture(assets::PLAYER)->setSX(2)->setSY(2);
+        
+        int initialX = playerConfig::INITIAL_X - this->getWidth()/2;
+        int initialY = playerConfig::INITIAL_Y - this->getHeight()*1.5;
+
+        this->setX(initialX)->setY(initialY)->setDX(1);
     };
 
     Player::~Player() {
