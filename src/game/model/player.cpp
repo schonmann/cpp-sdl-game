@@ -5,6 +5,7 @@ namespace model {
     
     Player::Player() {
         this->loadTexture(assets::PLAYER);
+        this->setSX(2)->setSY(2);
     };
 
     Player::~Player() {
