@@ -19,8 +19,12 @@ namespace model {
             int layer;
 
         protected:
-            virtual void updateXMotion(float dt);
-            virtual void updateYMotion(float dt);
+            virtual void updateDDX(float dt);
+            virtual void updateDDY(float dt);
+            virtual void updateDX(float dt);
+            virtual void updateDY(float dt);
+            virtual void updateX(float dt);
+            virtual void updateY(float dt);
         public:
             SDL_Texture * texture;
 
@@ -53,7 +57,8 @@ namespace model {
             virtual int getY();
 
 			virtual AbstractObject * setDX(double dx);
-            virtual int getDX();
+            virtual double getDX();
+            
 			virtual AbstractObject * setDY(double dy);
 			virtual AbstractObject * setDDX(double ddx);
 			virtual AbstractObject * setDDY(double ddy);

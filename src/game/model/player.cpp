@@ -19,7 +19,9 @@ namespace model {
     };
 
     void Player::update(float dt, const Uint8 * input) {
-        //updateXMotion(dx); Do not update x axis!
-        this->updateYMotion(dt);
+        this->updateDX(dt);
+        this->updateDY(dt);
+        //this->updateXPosition(dt);
+        this->updateY(dt);
     };
 }

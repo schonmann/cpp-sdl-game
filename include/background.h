@@ -11,12 +11,12 @@ namespace model {
         private:
             AbstractObject * referential;
             vector<AbstractObject*> backgroundLayers;
-            Background * addLayer(char * path, float dx);
-            Background * setReferential(AbstractObject * referential);
+            Background * addLayer(char * path, double dx);
         public:
             Background();
             ~Background();
             void draw(Renderer * renderer);
             void update(float dt, const Uint8 * input);
+            Background * setReferential(AbstractObject * referential);
     };
 }

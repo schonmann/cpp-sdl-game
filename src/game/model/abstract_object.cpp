@@ -39,33 +39,43 @@ namespace model {
     //If any inherited object is not intended to follow these rules, override this.
 
     void AbstractObject::update(float dt, const Uint8 *input) {
-        this->updateXMotion(dt);
-        this->updateYMotion(dt);
+        this->updateDDX(dt);
+        this->updateDDY(dt);
+        this->updateDX(dt);
+        this->updateDY(dt);
+        this->updateX(dt);
+        this->updateY(dt);
     };
 
-    void AbstractObject::updateXMotion(float dt) {
+    void AbstractObject::updateDDX(float dt) {
         this->ddx = util::clamp(this->ddx, bounds_ddx.getA(), bounds_ddx.getB());
-
-        this->dx += this->ddx * dt;
-
-        this->dx = util::clamp(this->dx, bounds_dx.getA(), bounds_dx.getB());
-
-        this->x += round(this->dx * dt);
-
-        this->dx = util::clamp(this->dx, bounds_x.getA(), bounds_x.getB());
     };
 
-    void AbstractObject::updateYMotion(float dt) {
+    void AbstractObject::updateDDY(float dt) {
         this->ddy = util::clamp(this->ddy, bounds_ddy.getA(), bounds_ddy.getB());
-
-        this->dx += this->ddy * dt;
-
-        this->dy = util::clamp(this->dy, bounds_dy.getA(), bounds_dy.getB());
-
-        this->y += round(this->dy * dt);
-
-        this->dy = util::clamp(this->dy, bounds_y.getA(), bounds_y.getB());
     };
+ 
+
+    void AbstractObject::updateDX(float dt) {
+        this->dx += this->ddx * dt;
+        this->dx = util::clamp(this->dx, bounds_dx.getA(), bounds_dx.getB());
+    };
+
+    void AbstractObject::updateDY(float dt) {
+        this->dy += this->ddy * dt;
+        this->dy = util::clamp(this->dy, bounds_dy.getA(), bounds_dy.getB());
+    };
+
+    void AbstractObject::updateX(float dt) {
+        this->x += round(this->dx * dt);
+        this->x = util::clamp(this->x, bounds_x.getA(), bounds_x.getB());
+    };
+
+    void AbstractObject::updateY(float dt) {
+        this->y += round(this->dy * dt);
+        this->y = util::clamp(this->y, bounds_y.getA(), bounds_y.getB());
+    };
+    
 
     SDL_Texture * AbstractObject::getTexture() {
         return this->texture;
@@ -161,7 +171,7 @@ namespace model {
 		return this;
     };
 
-    int AbstractObject::getDX() {
+    double AbstractObject::getDX() {
         return this->dx;
     };
 

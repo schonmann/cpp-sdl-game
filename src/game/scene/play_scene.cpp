@@ -9,8 +9,12 @@ using namespace model;
 namespace scene{
     
     PlayScene::PlayScene() {
-        this->objects["background"] = new Background();
-        this->objects["player"] = new Player();
+        Player * player = new Player();
+        Background * background = new Background();
+        background->setReferential(player);
+
+        this->objects["background"] = background;
+        this->objects["player"] = player;
     };
 
     PlayScene::~PlayScene() {

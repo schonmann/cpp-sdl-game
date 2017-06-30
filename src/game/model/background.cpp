@@ -22,7 +22,7 @@ namespace model {
         for_each(this->backgroundLayers.begin(), this->backgroundLayers.end(), free);
     };
 
-    Background * Background::addLayer(char * path, float dx) {
+    Background * Background::addLayer(char * path, double dx) {
 
         AbstractObject * layer = (new AbstractObject())->loadTexture(path)->setLayer(0)->setDX(dx);
 
@@ -80,10 +80,21 @@ namespace model {
         for(int i = 0; i < this->backgroundLayers.size(); i++) {
             AbstractObject * layer = this->backgroundLayers[i];
 
-            layer->addX(referential->getDX());
+            //Add the position of this layer according to the referential object
+            //movement variables at the given time, the velocity of the layer, 
+            //and the delta time.
+
+            layer->addX(referential->getDX() * layer->getDX() * dt);
+
+            //If the background is out of bounds, reset it.
 
             if(layer->getX() >= graphicsConfig::WINDOW_WIDTH || 
                 layer->getX() <= -graphicsConfig::WINDOW_WIDTH) layer->setX(0);
         }
+    };
+
+    Background * Background::setReferential(AbstractObject * referential) {
+        this->referential = referential;
+        return this;
     };
 }
