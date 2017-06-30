@@ -7,8 +7,8 @@ namespace scene{
         for(gameObjIter it = this->objects.begin(); it != this->objects.end(); it++) it->second->draw(renderer);
     }
     
-    void AbstractScene::update(float dt, const Uint8 * input) {
-        for(gameObjIter it = this->objects.begin(); it != this->objects.end(); it++) it->second->update(dt, input);
+    void AbstractScene::update(float dt) {
+        for(gameObjIter it = this->objects.begin(); it != this->objects.end(); it++) it->second->update(dt);
     }
 
     void AbstractScene::addObject(string key, AbstractObject *newObject) {

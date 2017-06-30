@@ -32,7 +32,7 @@ namespace model {
             ~AbstractObject();
 
             virtual void draw(core::Renderer *renderer);
-            virtual void update(float dt, const Uint8 * input);
+            virtual void update(float dt);
             virtual SDL_Texture * getTexture();
             virtual SDL_Rect * getSrcRect();
             virtual SDL_Rect * getDestRect();
@@ -58,7 +58,7 @@ namespace model {
 
 			virtual AbstractObject * setDX(double dx);
             virtual double getDX();
-            
+
 			virtual AbstractObject * setDY(double dy);
 			virtual AbstractObject * setDDX(double ddx);
 			virtual AbstractObject * setDDY(double ddy);

@@ -25,7 +25,7 @@ namespace scene{
             priority_queue<AbstractObject*, vector<AbstractObject*>, sortByLayer> objectHeap;
         public:
             virtual void draw(Renderer * renderer);
-            virtual void update(float dt, const Uint8 * input);
+            virtual void update(float dt);
             void addObject(string key, AbstractObject *newObject);
     };
 }

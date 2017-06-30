@@ -38,7 +38,7 @@ namespace model {
     //Apply physics behavior to all abstract objects, by default.
     //If any inherited object is not intended to follow these rules, override this.
 
-    void AbstractObject::update(float dt, const Uint8 *input) {
+    void AbstractObject::update(float dt) {
         this->updateDDX(dt);
         this->updateDDY(dt);
         this->updateDX(dt);

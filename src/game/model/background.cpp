@@ -72,7 +72,7 @@ namespace model {
         }
     };
 
-    void Background::update(float dt, const Uint8 * input) {
+    void Background::update(float dt) {
         AbstractObject * referential = this->referential;
         
         if(referential == NULL) return;

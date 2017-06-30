@@ -11,6 +11,6 @@ namespace model {
         public:
             Player();
             ~Player();
-            void update(float dt, const Uint8 * input);
+            void update(float dt);
     };
 }

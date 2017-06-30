@@ -18,7 +18,7 @@ namespace core {
             float dt = (SDL_GetTicks() - lastTick);
             lastTick = SDL_GetTicks();
 
-            game->update(dt, SDL_GetKeyboardState(NULL));
+            game->update(dt);
             
             this->graphics->startBatch();
 

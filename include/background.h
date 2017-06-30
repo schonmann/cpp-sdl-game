@@ -16,7 +16,7 @@ namespace model {
             Background();
             ~Background();
             void draw(Renderer * renderer);
-            void update(float dt, const Uint8 * input);
+            void update(float dt);
             Background * setReferential(AbstractObject * referential);
     };
 }
