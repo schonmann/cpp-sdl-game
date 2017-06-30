@@ -14,8 +14,7 @@ namespace model {
     Background::Background() {
         this->setLayer(0);
         for(int i = 0; i < backgroundConfig::NUM_LAYERS; i++) {
-            this->addLayer(assets::BACKGROUND_LAYERS[i], 
-                backgroundConfig::LAYER_DX_MULTIPLIER[i]);
+            this->addLayer(assets::BACKGROUND_LAYERS[i], backgroundConfig::LAYER_DX_MULTIPLIER[i]);
         }
     };
 
@@ -24,8 +23,17 @@ namespace model {
     };
 
     Background * Background::addLayer(char * path, float dx) {
-        AbstractObject * object = (new AbstractObject())->loadTexture(path)->setLayer(0)->setDX(dx);
-        this->backgroundLayers.push_back(object);
+
+        AbstractObject * layer = (new AbstractObject())->loadTexture(path)->setLayer(0)->setDX(dx);
+
+        double xScaleFactor = graphicsConfig::WINDOW_WIDTH/(double) layer->getWidth();
+        double yScaleFactor = graphicsConfig::WINDOW_HEIGHT/(double) layer->getHeight();
+
+        layer->setSX(xScaleFactor);
+        layer->setSY(yScaleFactor);
+
+        this->backgroundLayers.push_back(layer);
+        
 		return this;
     };
 
@@ -33,12 +41,9 @@ namespace model {
         for(int i = 0; i < this->backgroundLayers.size(); i++) {
             AbstractObject * layer = this->backgroundLayers[i];
             SDL_Rect dest = *layer->getDestRect();
-            
-            float multx = graphicsConfig::WINDOW_WIDTH / (float) dest.w;
-            float multy = graphicsConfig::WINDOW_HEIGHT / (float) dest.h;
 
-            dest.w *= multx;
-            dest.h *= multy;
+            dest.w *= layer->getSX();
+            dest.h *= layer->getSY();
 
             //Draw center.
 

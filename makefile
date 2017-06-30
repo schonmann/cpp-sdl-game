@@ -1,4 +1,4 @@
-run: game cleanup
+run: game cleanaft
 	./game
 game: all.o
 	g++ -o game *.o  -lSDL2 -lSDL2_image
@@ -7,8 +7,11 @@ debug: all.o
 
 # Compile all .cpp object files for future linking.
 
-all.o: cleanup
+all.o: cleanb4
 	find . -type f -name '*.cpp' -exec sh -c 'g++ {} -Iinclude -c $(basename {} .cpp)' \;
-cleanup: game
-	rm *.o
+
+cleanb4:
+	-rm *.o
+cleanaft:
+	-rm *.o
 

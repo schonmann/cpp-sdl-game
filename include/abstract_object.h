@@ -8,6 +8,7 @@ namespace model {
 		private:	
             int x, y;
             int w, h;
+            double sx, sy;
             double dx,dy;
             double ddx,ddy;
 
@@ -32,7 +33,13 @@ namespace model {
             virtual int getLayer();
 			virtual AbstractObject * setX(int x);
             virtual int getX();
-            virtual void addX(int x);
+            virtual AbstractObject * addX(int x);
+
+			virtual AbstractObject * setSX(double sx);
+            virtual double getSX();
+			virtual AbstractObject * setSY(double sy);
+            virtual double getSY();
+
 			virtual AbstractObject * setY(int y);
 			virtual AbstractObject * setDX(double dx);
             virtual int getDX();
@@ -42,5 +49,6 @@ namespace model {
 			virtual AbstractObject * setWidth(int w);
             virtual int getWidth();
 			virtual AbstractObject * setHeight(int h);
+            virtual int getHeight();
     };
 }

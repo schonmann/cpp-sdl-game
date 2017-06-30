@@ -12,6 +12,8 @@ using namespace std;
 namespace model {
 
     AbstractObject::AbstractObject() {
+        this->sx = 1; 
+        this->sy = 1;
         this->x = 0; this->bounds_x.set(0, graphicsConfig::WINDOW_WIDTH);
         this->y = 0; this->bounds_y.set(0, graphicsConfig::WINDOW_HEIGHT);
         this->dx = 0; this->bounds_dx.set(-playerConfig::MAX_DX, +playerConfig::MAX_DX);
@@ -95,11 +97,30 @@ namespace model {
 
     int AbstractObject::getX() {
         return this->x;
-    }
+    };
 
-    void AbstractObject::addX(int dx) {
+    AbstractObject * AbstractObject::addX(int dx) {
         this->x += dx;
-    }
+        return this;
+    };
+
+    AbstractObject * AbstractObject::setSX(double sx) {
+        this->sx = sx;
+        return this;
+    };
+
+    double AbstractObject::getSX() {
+        return this->sx;
+    };
+    
+    AbstractObject * AbstractObject::setSY(double sy) {
+        this->sy = sy;
+        return this;
+    };
+    
+    double AbstractObject::getSY() {
+        return this->sy;
+    };
 
 	AbstractObject * AbstractObject::setY(int y) {
         this->y = y;
@@ -113,7 +134,7 @@ namespace model {
 
     int AbstractObject::getDX() {
         return this->dx;
-    }
+    };
 
 	AbstractObject * AbstractObject::setDY(double dy) {
         this->dy = dy;
@@ -137,10 +158,14 @@ namespace model {
 
     int AbstractObject::getWidth() {
         return this->w;
-    }
+    };
 
 	AbstractObject * AbstractObject::setHeight(int h) {
         this->h = h;
 		return this;
+    };
+
+    int AbstractObject::getHeight() {
+        return this->h;
     };
 }
