@@ -10,7 +10,7 @@ namespace model {
     class Background : public AbstractObject {
         private:
             vector<AbstractObject*> backgroundLayers;
-            AbstractObject * addLayer(AbstractObject *bgLayer);
+            Background * addLayer(string path);
         public:
             Background();
             ~Background();

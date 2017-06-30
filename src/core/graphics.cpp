@@ -59,7 +59,6 @@ void SDLGraphics::startBatch() {
 
 void SDLGraphics::batchRender(SDL_Texture * texture, SDL_Rect * src, SDL_Rect * dest) {
     assert(this->batching == true);
-    
     SDL_RenderCopy(this->renderer, texture, src, dest);
 };
 

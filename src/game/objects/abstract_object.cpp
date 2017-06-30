@@ -9,6 +9,15 @@ using namespace std;
 namespace model {
 
     AbstractObject::AbstractObject() {
+        this->x = 0;
+        this->y = 0;
+        this->dx = 0;
+        this->dy = 0;
+        this->ddx = 0;
+        this->ddy = 0;
+        this->w = 0;
+        this->h = 0;
+        this->texture = NULL;
     };
 
     AbstractObject::~AbstractObject() {

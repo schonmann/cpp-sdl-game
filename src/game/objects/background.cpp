@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
 #include <assets.h>
@@ -9,23 +10,19 @@ using namespace std;
 namespace model {
 
     Background::Background() {
-        AbstractObject * l1 = (new AbstractObject())->loadTexture(assets::BACKGROUND_L1)->setLayer(1);
-        AbstractObject * l2 = (new AbstractObject())->loadTexture(assets::BACKGROUND_L2)->setLayer(2);
-        AbstractObject * l3 = (new AbstractObject())->loadTexture(assets::BACKGROUND_L3)->setLayer(3);
-
-        this->backgroundLayers.push_back(l1);
-        this->backgroundLayers.push_back(l2);
-        this->backgroundLayers.push_back(l3);
-
         this->setLayer(0);
+        this->addLayer(assets::BACKGROUND_L1)->
+            addLayer(assets::BACKGROUND_L2)->
+            addLayer(assets::BACKGROUND_L3);
     };
 
     Background::~Background() {
-        
+        for_each(this->backgroundLayers.begin(), this->backgroundLayers.end(), free);
     };
 
-    AbstractObject * Background::addLayer(AbstractObject *bgLayer) {
-        this->backgroundLayers.push_back(bgLayer);
+    Background * Background::addLayer(string path) {
+        AbstractObject * object = (new AbstractObject())->loadTexture(path)->setLayer(0);
+        this->backgroundLayers.push_back(object);
 		return this;
     };
 
