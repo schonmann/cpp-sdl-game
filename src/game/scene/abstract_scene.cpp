@@ -11,7 +11,8 @@ namespace scene{
         for(gameObjIter it = this->objects.begin(); it != this->objects.end(); it++) it->second->update(dt, input);
     }
 
-    void AbstractScene::addObject(AbstractObject *newObject) {
-        this->addObject(newObject);
+    void AbstractScene::addObject(string key, AbstractObject *newObject) {
+        this->objects[key] = newObject;
+        this->objectHeap.push(newObject);
     }
 }

@@ -38,6 +38,8 @@ SDLGraphics::SDLGraphics() {
     int imgLoadSuccess = (IMG_Init(config::IMG_FLAGS) & config::IMG_FLAGS) == config::IMG_FLAGS;
 
     assert(imgLoadSuccess);
+
+    SDL_SetHint (SDL_HINT_RENDER_SCALE_QUALITY, 0);
     
     this->batching = false;
 };
