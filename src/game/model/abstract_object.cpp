@@ -104,6 +104,12 @@ namespace model {
         return this;
     };
 
+    AbstractObject * AbstractObject::setS(double s) {
+        this->sx = s;
+        this->sy = s;
+        return this;
+    };
+
     AbstractObject * AbstractObject::setSX(double sx) {
         this->sx = sx;
         return this;

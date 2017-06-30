@@ -34,8 +34,10 @@ namespace model {
 
 			virtual AbstractObject * setX(int x);
             virtual int getX();
-            
+
             virtual AbstractObject * addX(int x);
+
+            virtual AbstractObject * setS(double s);
 
 			virtual AbstractObject * setSX(double sx);
             virtual double getSX();
