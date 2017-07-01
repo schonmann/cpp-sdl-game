@@ -37,6 +37,7 @@ namespace model {
             virtual SDL_Rect * getSrcRect();
             virtual SDL_Rect * getDestRect();
             virtual AbstractObject * loadTexture(char * path);
+            virtual AbstractObject * loadTexture(SDL_Surface * surface);
             virtual AbstractObject * setLayer(int layer);
             virtual int getLayer();
 
@@ -64,9 +65,15 @@ namespace model {
 			virtual AbstractObject * setDX(double dx);
             virtual double getDX();
 
-			virtual AbstractObject * setDY(double dy);
 			virtual AbstractObject * setDDX(double ddx);
+            virtual double getDDX();
+
+			virtual AbstractObject * setDY(double dy);
+            virtual double getDY();
+
 			virtual AbstractObject * setDDY(double ddy);
+            virtual double getDDY();
+
 			virtual AbstractObject * setWidth(double w);
             virtual double getWidth();
 			virtual AbstractObject * setHeight(double h);

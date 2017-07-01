@@ -10,9 +10,8 @@ using namespace core;
 namespace model {
     
     Player::Player() {
-
         this->loadTexture(assets::PLAYER)->setSX(2)->setSY(2);
-        
+
         int initialX = playerConfig::INITIAL_X - this->getWidth()/2;
         int initialY = playerConfig::INITIAL_Y - this->getHeight()*1.5;
 
@@ -21,25 +20,79 @@ namespace model {
             setBoundsY(0, graphicsConfig::WINDOW_HEIGHT - this->getHeight()*1.5)->
             setBoundsDX(-playerConfig::MAX_DX, playerConfig::MAX_DX)->
             setBoundsDY(-playerConfig::MAX_DY, playerConfig::MAX_DY);
+
+        this->flying = false;
     };
 
     Player::~Player() {
 
     };
 
-    void Player::update(float dt) {
-        if(Input::getInstance().isPressed(SDL_SCANCODE_RIGHT)) this->setDDX(0.002);
-        else if(Input::getInstance().isPressed(SDL_SCANCODE_LEFT)) this->setDDX(-0.002);
-        else this->setDDX(0);
+    void Player::jump() {
+        this->setDY(playerConfig::JUMP_SPEED);
+    };
 
-        int ground = this->getBoundsY().getB();
+    void Player::fly() {
+        this->flying = true;
+    };
 
-        if(Input::getInstance().isPressed(SDL_SCANCODE_SPACE) && this->getY() == ground)
-            this->setDY(playerConfig::JUMP_SPEED);
+    void Player::goRight() {
+        this->setDDX(playerConfig::X_ACCEL);
+    };
+
+    void Player::goLeft() {
+        this->setDDX(-playerConfig::X_ACCEL);
+    };
+
+    void Player::stayIdle() {
+        this->setDDX(0);
+    };
+
+    void Player::goDown() {
+        this->setDY(.8);
+    };
+
+    void Player::interpolateFly(float dt) {
+        this->addDDY(-playerConfig::FLY_ACCEL);
+        if(this->getDY() <= -.5) {
+            this->setDDY(0.002);
+            this->flying = false;
+        }
+    };
+
+    bool Player::isGrounded() {
+        return this->getY() == this->getBoundsY().getB();
+    };
+
+    void Player::handleInput() {
+        Input * input = &Input::getInstance();
         
+        if(input->isPressed(SDL_SCANCODE_RIGHT)) this->goRight();
+        else if(input->isPressed(SDL_SCANCODE_LEFT)) this->goLeft();
+        else this->stayIdle();
+        
+        bool spacePressed = input->isPressed(SDL_SCANCODE_SPACE);
+
+        if(spacePressed) {
+            if(this->isGrounded()) this->jump();
+            else if (this->getDY() > 0) this->fly();
+        } 
+    };
+
+    void Player::update(float dt) {
+        this->handleInput();
+
+        if(this->flying) this->interpolateFly(dt);
+
+        this->score += this->getDX() * dt;
+
         this->updateDX(dt);
         this->updateDY(dt);
         //this->updateX(dt);
         this->updateY(dt);
+    };
+
+    double Player::getScore() {
+        return this->score;
     };
 }

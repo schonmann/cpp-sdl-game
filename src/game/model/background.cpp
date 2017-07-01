@@ -12,7 +12,8 @@ using namespace std;
 
 namespace model {
 
-    Background::Background() {
+    Background::Background(Player * player) {
+        this->setReferential(player);
         for(int i = 0; i < backgroundConfig::NUM_LAYERS; i++) {
             this->addLayer(assets::BACKGROUND_LAYERS[i], backgroundConfig::LAYER_DX_MULTIPLIER[i]);
         }
@@ -87,8 +88,6 @@ namespace model {
             //and the delta time.
 
             layer->setDX(referential->getDX() * layer->getSpeedFactor() * (double) dt);
-
-            cout << "DX: " << layer->getDX() << endl;
 
             layer->update(dt);
 

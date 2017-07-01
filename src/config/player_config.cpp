@@ -2,6 +2,8 @@
 #include <player_config.h>
 
 namespace playerConfig{
+    double X_ACCEL = 0.002;
+    double FLY_ACCEL = 0.002;
     double MAX_DX = 1;
     double MAX_DY = 1;
     double MAX_DDX = 0.1;

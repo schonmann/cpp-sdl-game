@@ -97,15 +97,24 @@ namespace model {
     };
 
     AbstractObject * AbstractObject::loadTexture(char * path) {
+        
         SDL_Surface * surf = IMG_Load(path);
+        
+        this->loadTexture(surf);
+        
+        return this;
+    };
+
+    AbstractObject * AbstractObject::loadTexture(SDL_Surface * surface) {
+        
         SDL_Renderer * renderer = SDLGraphics::getInstance()->getRenderer();
 
-        this->w = surf->w;
-        this->h = surf->h;
+        this->w = surface->w;
+        this->h = surface->h;
 
-        this->texture = SDL_CreateTextureFromSurface(renderer, surf);
+        this->texture = SDL_CreateTextureFromSurface(renderer, surface);
 
-        SDL_FreeSurface(surf);
+        SDL_FreeSurface(surface);
 
 		return this;
     };
@@ -200,14 +209,22 @@ namespace model {
         return this->dx;
     };
 
+    AbstractObject * AbstractObject::setDDX(double ddx) {
+        this->ddx = ddx;
+        return this;
+    };
+
+    double AbstractObject::getDDX() {
+        return this->ddx;
+    };
+
 	AbstractObject * AbstractObject::setDY(double dy) {
         this->dy = dy;
 		return this;
     };
-	
-	AbstractObject * AbstractObject::setDDX(double ddx) {
-        this->ddx = ddx;
-		return this;
+    
+    double AbstractObject::getDY() {
+        return this->dy;
     };
 
 	AbstractObject * AbstractObject::setDDY(double ddy) {
@@ -215,10 +232,14 @@ namespace model {
 		return this;
     };
 
+    double AbstractObject::getDDY() {
+        return this->ddy;
+    };
+
 	AbstractObject * AbstractObject::setWidth(double w) {
         this->w = w * this->sx;
 		return this;
-    };
+    };\
 
     double AbstractObject::getWidth() {
         return this->w * this->sx;

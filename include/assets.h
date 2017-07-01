@@ -11,4 +11,5 @@ namespace assets{
     extern char * PLAYER;
     extern char * BACKGROUND_LAYERS[];
     extern char * MAIN_MUSIC;
+    extern char * FONT_ARCADE;
 }

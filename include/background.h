@@ -1,5 +1,6 @@
 #pragma once
 
+#include <player.h>
 #include <vector>
 #include <abstract_object.h>
 #include <background_layer.h>
@@ -14,7 +15,7 @@ namespace model {
             vector<BackgroundLayer*> backgroundLayers;
             Background * addLayer(char * path, double dx);
         public:
-            Background();
+            Background(Player * player);
             ~Background();
             void draw(Renderer * renderer);
             void update(float dt);
