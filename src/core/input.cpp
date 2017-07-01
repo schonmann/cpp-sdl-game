@@ -8,7 +8,7 @@ namespace input {
         return *instance;
     };
 
-    bool Input::isPressed(Uint8 key) {
+    bool Input::isPressed(char key) {
         return this->state[key];
     };
 

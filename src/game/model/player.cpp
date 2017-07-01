@@ -23,9 +23,9 @@ namespace model {
     };
 
     void Player::update(float dt) {
-        if(Input::getInstance().isPressed(SDLK_RIGHT)){
-            this->addDDY(0.1);
-        }
+        if(Input::getInstance().isPressed(SDLK_RIGHT)) this->setDDX(0.001);
+        if(Input::getInstance().isPressed(SDLK_LEFT)) this->setDDX(-0.001);
+        
         this->updateDX(dt);
         this->updateDY(dt);
         //this->updateXPosition(dt);

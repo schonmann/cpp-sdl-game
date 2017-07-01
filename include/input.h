@@ -6,7 +6,7 @@ namespace input {
         public:
             const Uint8 * state;
             static Input &getInstance();
-            bool isPressed(Uint8 key);
+            bool isPressed(char key);
         private:
             Input();
             ~Input();

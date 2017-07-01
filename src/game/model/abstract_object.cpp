@@ -128,11 +128,36 @@ namespace model {
         return this->x;
     };
 
-    AbstractObject * AbstractObject::addX(int dx) {
-        this->x += dx;
+    AbstractObject * AbstractObject::addX(double dx) {
+        this->x += round(dx);
         return this;
     };
 
+    AbstractObject * AbstractObject::addDX(double ddx){
+        this->dx += ddx;
+        return this;
+    }
+
+    AbstractObject * AbstractObject::addDDX(double dddx){
+        this->ddx += dddx;
+        return this;
+    }
+
+    AbstractObject * AbstractObject::addY(double dy) {
+        this->y += round(dy);
+        return this;
+    };
+
+    AbstractObject * AbstractObject::addDY(double ddy){
+        this->dy += ddy;
+        return this;
+    }
+
+    AbstractObject * AbstractObject::addDDY(double dddy){
+        this->ddy += dddy;
+        return this;
+    }
+    
     AbstractObject * AbstractObject::setS(double s) {
         this->sx = s;
         this->sy = s;
