@@ -1,7 +1,12 @@
 #pragma once
+
 #include <string>
 #include <renderer.h>
 #include <vector2.h>
+
+#include <animation.h>
+
+using namespace animation;
 
 namespace model {
     class AbstractObject {
@@ -15,6 +20,8 @@ namespace model {
             Vector2 bounds_x,bounds_y;
             Vector2 bounds_dx,bounds_dy;
             Vector2 bounds_ddx,bounds_ddy;
+
+            animation::Animation *animation;
 
             int layer;
 
@@ -36,8 +43,8 @@ namespace model {
             virtual SDL_Texture * getTexture();
             virtual SDL_Rect * getSrcRect();
             virtual SDL_Rect * getDestRect();
-            virtual AbstractObject * loadTexture(char * path);
-            virtual AbstractObject * loadTexture(SDL_Surface * surface);
+            virtual AbstractObject * loadTexture(char * path, int rows, int cols);
+            virtual AbstractObject * loadTexture(SDL_Surface * surface, int rows, int cols);
             virtual AbstractObject * setLayer(int layer);
             virtual int getLayer();
 
@@ -88,5 +95,7 @@ namespace model {
             virtual AbstractObject * setBoundsDY(double a, double b);
             virtual Vector2 getBoundsDX();
             virtual Vector2 getBoundsDY();
+
+            virtual Animation * getAnimation();
     };
 }

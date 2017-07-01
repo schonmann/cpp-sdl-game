@@ -10,7 +10,7 @@ using namespace core;
 namespace model {
     
     Player::Player() {
-        this->loadTexture(assets::PLAYER)->setSX(2)->setSY(2);
+        this->loadTexture(assets::PLAYER, 1, 1)->setSX(2)->setSY(2);
 
         int initialX = playerConfig::INITIAL_X - this->getWidth()/2;
         int initialY = playerConfig::INITIAL_Y - this->getHeight()*1.5;
@@ -90,6 +90,8 @@ namespace model {
         this->updateDY(dt);
         //this->updateX(dt);
         this->updateY(dt);
+
+        this->getAnimation()->update(dt);
     };
 
     double Player::getScore() {

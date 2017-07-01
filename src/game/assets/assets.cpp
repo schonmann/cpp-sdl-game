@@ -11,4 +11,5 @@ namespace assets {
     };
     char * MAIN_MUSIC = (char *) "./res/main.mp3";
     char * FONT_ARCADE = (char *) "./res/arcade.TTF";
+    char * BAT = (char *) "./res/bat.gif";
 }

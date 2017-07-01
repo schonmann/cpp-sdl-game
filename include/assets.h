@@ -12,4 +12,5 @@ namespace assets{
     extern char * BACKGROUND_LAYERS[];
     extern char * MAIN_MUSIC;
     extern char * FONT_ARCADE;
+    extern char * BAT;
 }

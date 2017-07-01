@@ -9,6 +9,7 @@
 
 using namespace core;
 using namespace std;
+using namespace animation;
 
 namespace model {
 
@@ -32,7 +33,7 @@ namespace model {
 
     void AbstractObject::draw(Renderer *renderer) {
         renderer->batchRender(this->getTexture(),
-            this->getSrcRect(),
+            this->animation->getSrcRect(),
             this->getDestRect());
     };
     
@@ -46,6 +47,7 @@ namespace model {
         this->updateDY(dt);
         this->updateX(dt);
         this->updateY(dt);
+        this->animation->update(dt);
     };
 
     void AbstractObject::updateDDX(float dt) {
@@ -82,7 +84,7 @@ namespace model {
     };
 
     SDL_Rect * AbstractObject::getSrcRect() {
-        return NULL;
+        return this->animation->getSrcRect();
     };
 
     SDL_Rect * AbstractObject::getDestRect() {
@@ -96,23 +98,24 @@ namespace model {
         return &destination;
     };
 
-    AbstractObject * AbstractObject::loadTexture(char * path) {
+    AbstractObject * AbstractObject::loadTexture(char * path, int rows, int cols) {
         
         SDL_Surface * surf = IMG_Load(path);
         
-        this->loadTexture(surf);
+        this->loadTexture(surf, rows, cols);
         
         return this;
     };
 
-    AbstractObject * AbstractObject::loadTexture(SDL_Surface * surface) {
+    AbstractObject * AbstractObject::loadTexture(SDL_Surface * surface, int rows, int cols) {
         
         SDL_Renderer * renderer = SDLGraphics::getInstance()->getRenderer();
 
-        this->w = surface->w;
-        this->h = surface->h;
+        this->w = surface->w/rows;
+        this->h = surface->h/cols;
 
         this->texture = SDL_CreateTextureFromSurface(renderer, surface);
+        this->animation = new Animation(rows, cols, this->w, this->h);
 
         SDL_FreeSurface(surface);
 
@@ -286,8 +289,11 @@ namespace model {
         return this->bounds_dx;
     };
     
-    Vector2 AbstractObject::getBoundsDY(){
+    Vector2 AbstractObject::getBoundsDY() {
         return this->bounds_dy;
     };
-    
+
+    Animation *AbstractObject::getAnimation() {
+        return this->animation;
+    };
 }

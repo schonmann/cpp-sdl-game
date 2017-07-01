@@ -26,7 +26,7 @@ namespace model {
     Background * Background::addLayer(char * path, double speedFactor) {
 
         BackgroundLayer * layer = new BackgroundLayer();
-        layer->loadTexture(path);
+        layer->loadTexture(path, 1, 1);
         layer->setSpeedFactor(speedFactor);
 
         double xScaleFactor = graphicsConfig::WINDOW_WIDTH/(double) layer->getWidth();

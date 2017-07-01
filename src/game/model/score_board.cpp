@@ -39,7 +39,7 @@ namespace model {
 
         SDL_Surface * message = TTF_RenderText_Solid(this->font, str, this->color);
         
-        this->loadTexture(message);
+        this->loadTexture(message, 1, 1);
         
         double posX = graphicsConfig::WINDOW_WIDTH/2 - this->getWidth()/2;
         double posY = this->getHeight();
