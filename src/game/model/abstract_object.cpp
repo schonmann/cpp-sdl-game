@@ -76,7 +76,6 @@ namespace model {
         this->y += this->dy * dt;
         this->y = util::clamp(this->y, bounds_y.getA(), bounds_y.getB());
     };
-    
 
     SDL_Texture * AbstractObject::getTexture() {
         return this->texture;
@@ -252,4 +251,22 @@ namespace model {
         return this->bounds_y;
     };
 
+    AbstractObject * AbstractObject::setBoundsDX(double a, double b){
+        this->bounds_dx.set(a,b);
+        return this;
+    };
+    
+    AbstractObject * AbstractObject::setBoundsDY(double a, double b){
+        this->bounds_dy.set(a,b);
+        return this;
+    };
+    
+    Vector2 AbstractObject::getBoundsDX(){
+        return this->bounds_dx;
+    };
+    
+    Vector2 AbstractObject::getBoundsDY(){
+        return this->bounds_dy;
+    };
+    
 }

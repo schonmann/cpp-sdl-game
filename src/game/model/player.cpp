@@ -18,7 +18,9 @@ namespace model {
 
         this->setX(initialX)->setY(initialY)->setDDY(0.002)->
             setBoundsX(0, graphicsConfig::WINDOW_WIDTH - this->getWidth())->
-            setBoundsY(0, graphicsConfig::WINDOW_HEIGHT - this->getHeight()*1.5);
+            setBoundsY(0, graphicsConfig::WINDOW_HEIGHT - this->getHeight()*1.5)->
+            setBoundsDX(-playerConfig::MAX_DX, playerConfig::MAX_DX)->
+            setBoundsDY(-playerConfig::MAX_DY, playerConfig::MAX_DY);
     };
 
     Player::~Player() {

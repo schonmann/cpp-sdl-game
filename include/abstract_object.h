@@ -76,5 +76,10 @@ namespace model {
             virtual AbstractObject * setBoundsY(double a, double b);
             virtual Vector2 getBoundsX();
             virtual Vector2 getBoundsY();
+
+            virtual AbstractObject * setBoundsDX(double a, double b);
+            virtual AbstractObject * setBoundsDY(double a, double b);
+            virtual Vector2 getBoundsDX();
+            virtual Vector2 getBoundsDY();
     };
 }
