@@ -6,8 +6,8 @@
 namespace model {
     class AbstractObject {
 		private:	
-            int x, y;
-            int w, h;
+            double x, y;
+            double w, h;
             double sx, sy;
             double dx,dy;
             double ddx,ddy;
@@ -40,8 +40,8 @@ namespace model {
             virtual AbstractObject * setLayer(int layer);
             virtual int getLayer();
 
-			virtual AbstractObject * setX(int x);
-            virtual int getX();
+			virtual AbstractObject * setX(double x);
+            virtual double getX();
 
             virtual AbstractObject * addX(double x);
             virtual AbstractObject * addDX(double x);
@@ -58,8 +58,8 @@ namespace model {
 			virtual AbstractObject * setSY(double sy);
             virtual double getSY();
 
-			virtual AbstractObject * setY(int y);
-            virtual int getY();
+			virtual AbstractObject * setY(double y);
+            virtual double getY();
 
 			virtual AbstractObject * setDX(double dx);
             virtual double getDX();
@@ -67,9 +67,14 @@ namespace model {
 			virtual AbstractObject * setDY(double dy);
 			virtual AbstractObject * setDDX(double ddx);
 			virtual AbstractObject * setDDY(double ddy);
-			virtual AbstractObject * setWidth(int w);
-            virtual int getWidth();
-			virtual AbstractObject * setHeight(int h);
-            virtual int getHeight();
+			virtual AbstractObject * setWidth(double w);
+            virtual double getWidth();
+			virtual AbstractObject * setHeight(double h);
+            virtual double getHeight();
+
+            virtual AbstractObject * setBoundsX(double a, double b);
+            virtual AbstractObject * setBoundsY(double a, double b);
+            virtual Vector2 getBoundsX();
+            virtual Vector2 getBoundsY();
     };
 }

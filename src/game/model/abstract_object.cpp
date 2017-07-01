@@ -5,6 +5,7 @@
 #include <graphics_config.h>
 #include <player_config.h>
 #include <util.h>
+#include <limits>
 
 using namespace core;
 using namespace std;
@@ -14,12 +15,12 @@ namespace model {
     AbstractObject::AbstractObject() {
         this->sx = 1; 
         this->sy = 1;
-        this->x = 0; this->bounds_x.set(0, graphicsConfig::WINDOW_WIDTH);
-        this->y = 0; this->bounds_y.set(0, graphicsConfig::WINDOW_HEIGHT);
-        this->dx = 0; this->bounds_dx.set(-playerConfig::MAX_DX, +playerConfig::MAX_DX);
-        this->dy = 0; this->bounds_dy.set(-playerConfig::MAX_DY, +playerConfig::MAX_DY);
-        this->ddx = 0; this->bounds_ddx.set(-playerConfig::MAX_DDX, +playerConfig::MAX_DDX);
-        this->ddy = 0; this->bounds_ddy.set(-playerConfig::MAX_DDY, +playerConfig::MAX_DDY);
+        this->x = 0; this->bounds_x.set(-numeric_limits<double>::max(), numeric_limits<double>::max());
+        this->y = 0; this->bounds_y.set(-numeric_limits<double>::max(), numeric_limits<double>::max());
+        this->dx = 0; this->bounds_dx.set(-numeric_limits<double>::max(), numeric_limits<double>::max());
+        this->dy = 0; this->bounds_dy.set(-numeric_limits<double>::max(), numeric_limits<double>::max());
+        this->ddx = 0; this->bounds_ddx.set(-numeric_limits<double>::max(), numeric_limits<double>::max());
+        this->ddy = 0; this->bounds_ddy.set(-numeric_limits<double>::max(), numeric_limits<double>::max());
         this->w = 0;
         this->h = 0;
         this->texture = NULL;
@@ -67,12 +68,12 @@ namespace model {
     };
 
     void AbstractObject::updateX(float dt) {
-        this->x += round(this->dx * dt);
+        this->x += this->dx * dt;
         this->x = util::clamp(this->x, bounds_x.getA(), bounds_x.getB());
     };
 
     void AbstractObject::updateY(float dt) {
-        this->y += round(this->dy * dt);
+        this->y += this->dy * dt;
         this->y = util::clamp(this->y, bounds_y.getA(), bounds_y.getB());
     };
     
@@ -119,12 +120,12 @@ namespace model {
 		return this;
     };
 
-	AbstractObject * AbstractObject::setX(int x) {
+	AbstractObject * AbstractObject::setX(double x) {
         this->x = x;
 		return this;
     };
 
-    int AbstractObject::getX() {
+    double AbstractObject::getX() {
         return this->x;
     };
 
@@ -182,12 +183,12 @@ namespace model {
         return this->sy;
     };
 
-	AbstractObject * AbstractObject::setY(int y) {
+	AbstractObject * AbstractObject::setY(double y) {
         this->y = y;
 		return this;
     };
     
-    int AbstractObject::getY() {
+    double AbstractObject::getY() {
         return this->y;
     };
 
@@ -215,21 +216,40 @@ namespace model {
 		return this;
     };
 
-	AbstractObject * AbstractObject::setWidth(int w) {
+	AbstractObject * AbstractObject::setWidth(double w) {
         this->w = w * this->sx;
 		return this;
     };
 
-    int AbstractObject::getWidth() {
+    double AbstractObject::getWidth() {
         return this->w * this->sx;
     };
 
-	AbstractObject * AbstractObject::setHeight(int h) {
+	AbstractObject * AbstractObject::setHeight(double h) {
         this->h = h * this->sy;
 		return this;
     };
 
-    int AbstractObject::getHeight() {
+    double AbstractObject::getHeight() {
         return this->h * this->sy;
     };
+
+    AbstractObject * AbstractObject::setBoundsX(double a, double b){
+        this->bounds_x.set(a,b);
+        return this;
+    };
+
+    AbstractObject * AbstractObject::setBoundsY(double a, double b){
+        this->bounds_y.set(a,b);
+        return this;
+    };
+
+    Vector2 AbstractObject::getBoundsX(){
+        return this->bounds_x;
+    };
+
+    Vector2 AbstractObject::getBoundsY() {
+        return this->bounds_y;
+    };
+
 }

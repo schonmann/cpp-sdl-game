@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <abstract_object.h>
+#include <background_layer.h>
 
 using namespace std;
 using namespace core;
@@ -10,7 +11,7 @@ namespace model {
     class Background : public AbstractObject {
         private:
             AbstractObject * referential;
-            vector<AbstractObject*> backgroundLayers;
+            vector<BackgroundLayer*> backgroundLayers;
             Background * addLayer(char * path, double dx);
         public:
             Background();

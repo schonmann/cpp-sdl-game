@@ -5,6 +5,7 @@
 #include <background.h>
 #include <graphics_config.h>
 #include <background_config.h>
+#include <background_layer.h>
 #include <math.h>
 
 using namespace std;
@@ -12,7 +13,6 @@ using namespace std;
 namespace model {
 
     Background::Background() {
-        this->setLayer(0);
         for(int i = 0; i < backgroundConfig::NUM_LAYERS; i++) {
             this->addLayer(assets::BACKGROUND_LAYERS[i], backgroundConfig::LAYER_DX_MULTIPLIER[i]);
         }
@@ -22,9 +22,11 @@ namespace model {
         for_each(this->backgroundLayers.begin(), this->backgroundLayers.end(), free);
     };
 
-    Background * Background::addLayer(char * path, double dx) {
+    Background * Background::addLayer(char * path, double speedFactor) {
 
-        AbstractObject * layer = (new AbstractObject())->loadTexture(path)->setLayer(0)->setDX(dx);
+        BackgroundLayer * layer = new BackgroundLayer();
+        layer->loadTexture(path);
+        layer->setSpeedFactor(speedFactor);
 
         double xScaleFactor = graphicsConfig::WINDOW_WIDTH/(double) layer->getWidth();
         double yScaleFactor = graphicsConfig::WINDOW_HEIGHT/(double) layer->getHeight();
@@ -78,13 +80,17 @@ namespace model {
         if(referential == NULL) return;
 
         for(int i = 0; i < this->backgroundLayers.size(); i++) {
-            AbstractObject * layer = this->backgroundLayers[i];
+            BackgroundLayer * layer = this->backgroundLayers[i];
 
             //Add the position of this layer according to the referential object
             //movement variables at the given time, the velocity of the layer, 
             //and the delta time.
 
-            layer->addX(referential->getDX() * layer->getDX() * dt);
+            layer->setDX(referential->getDX() * layer->getSpeedFactor() * (double) dt);
+
+            cout << "DX: " << layer->getDX() << endl;
+
+            layer->update(dt);
 
             //If the background is out of bounds, reset it.
 
