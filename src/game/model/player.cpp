@@ -37,7 +37,7 @@ namespace model {
         
         this->updateDX(dt);
         this->updateDY(dt);
-        this->updateX(dt);
+        //this->updateX(dt);
         this->updateY(dt);
     };
 }

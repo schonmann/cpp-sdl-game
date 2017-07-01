@@ -3,6 +3,8 @@
 #include <game.h>
 #include <graphics.h>
 #include <play_scene.h>
+#include <sound.h>
+#include <assets.h>
 
 using namespace std;
 
@@ -20,5 +22,6 @@ namespace game {
     
     void Game::init() {
         cout << "Game: Initialized" << endl;
+        Sound::getInstance().startPlaying(assets::MAIN_MUSIC);
     };
 }

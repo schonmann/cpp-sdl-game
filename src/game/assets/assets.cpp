@@ -9,4 +9,5 @@ namespace assets {
         (char*)"./res/bg2.png", 
         (char*)"./res/bg3.png" 
     };
+    char * MAIN_MUSIC = (char *) "./res/main.mp3";
 }

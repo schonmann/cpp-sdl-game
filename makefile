@@ -1,9 +1,9 @@
 run: game cleanaft
 	./game
 game: all.o
-	g++ -o game *.o  -lSDL2 -lSDL2_image
+	g++ -o game *.o  -lSDL2 -lSDL2_image -lSDL2_mixer
 debug: all.o
-	g++ -o game *.o  -DDEBUG -lSDL2 -lSDL2_image
+	g++ -o game *.o  -DDEBUG -lSDL2 -lSDL2_image -lSDL2_mixer
 
 # Compile all .cpp object files for future linking.
 
