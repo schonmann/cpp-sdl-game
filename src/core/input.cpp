@@ -1,7 +1,7 @@
 #include <SDL2/SDL.h>
 #include <input.h>
 
-namespace input {
+namespace core {
     
     Input & Input::getInstance() {
         static Input * instance = new Input();

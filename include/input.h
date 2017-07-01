@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace input {
+namespace core {
     class Input{
         public:
             const Uint8 * state;

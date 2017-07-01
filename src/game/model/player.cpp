@@ -5,7 +5,7 @@
 #include <input.h>
 #include <iostream>
 
-using namespace input;
+using namespace core;
 
 namespace model {
     
@@ -31,7 +31,7 @@ namespace model {
         else this->setDDX(0);
 
         int ground = this->getBoundsY().getB();
-        
+
         if(Input::getInstance().isPressed(SDL_SCANCODE_SPACE) && this->getY() == ground)
             this->setDY(playerConfig::JUMP_SPEED);
         
