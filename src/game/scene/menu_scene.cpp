@@ -25,9 +25,11 @@ namespace scene {
     };
 
     void MenuScene::update(float dt) {
-
-        if(Input::getInstance().isPressed(SDL_SCANCODE_W) || Input::getInstance().isPressed(SDL_SCANCODE_A) || 
-            Input::getInstance().isPressed(SDL_SCANCODE_S) || Input::getInstance().isPressed(SDL_SCANCODE_D)) {
+        Input * input = &Input::getInstance();
+        if(input->isPressed(SDL_SCANCODE_W) || input->isPressed(SDL_SCANCODE_A) || 
+            input->isPressed(SDL_SCANCODE_S) || input->isPressed(SDL_SCANCODE_D) || 
+            input->isPressed(SDL_SCANCODE_UP) || input->isPressed(SDL_SCANCODE_LEFT) || 
+            input->isPressed(SDL_SCANCODE_DOWN) || input->isPressed(SDL_SCANCODE_RIGHT)) {
             PlayScene * scene = new PlayScene(this->game);
             this->game->setScene(scene);
         }
