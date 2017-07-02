@@ -8,6 +8,7 @@ namespace game {
     AbstractGame::AbstractGame() {
         this->running = true;
         this->paused = false;
+        this->scene = NULL;
     };
     
     void AbstractGame::setPaused(bool paused) {

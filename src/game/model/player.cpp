@@ -35,6 +35,10 @@ namespace model {
 
     void Player::jump() {
         this->setDY(playerConfig::JUMP_SPEED);
+
+        if(rand()%2) Sound::getInstance().playChunk(assets::JUMP_HIGH_1);
+        else Sound::getInstance().playChunk(assets::JUMP_HIGH_2);
+
     };
     
     void Player::setInputEnabled(bool inputEnabled) {
@@ -100,7 +104,7 @@ namespace model {
 
         if(this->flying) this->interpolateFly(dt);
         
-        this->score = util::max(this->score + this->getDX() * dt, this->score);
+        this->score = util::max(this->score + this->getDX() * dt, 0);
 
         this->updateDX(dt);
         this->updateDY(dt);
