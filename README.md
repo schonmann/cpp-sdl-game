@@ -13,3 +13,7 @@ sensoriais com o Arduino.
 Caso haja tempo, as threads de lógica de jogo e renderização serão
 desacopladas para aumentar a reatividade do game como um todo, e 
 o game atualizará em um time step fixo, independente do FPS.
+
+### Vídeo de Apresentação
+
+https://www.youtube.com/watch?v=xb1ja0I6Pl8&feature=youtu.be
