@@ -11,8 +11,6 @@ namespace core {
 
         Uint32 lastTick = SDL_GetTicks();
 
-        int frameCount = 0;
-
         while(game->isRunning()) 
         {
             float dt = (SDL_GetTicks() - lastTick);
@@ -26,15 +24,9 @@ namespace core {
 
             this->graphics->endBatch();
 
-            #ifdef DEBUG
-            printf("AVG: %f\n", frameCount/(SDL_GetTicks()/1000.0f));
-            #endif
-
             if(SDL_GetTicks() - lastTick < graphicsConfig::TICKS_PER_FRAME) {
                 SDL_Delay(graphicsConfig::TICKS_PER_FRAME - (SDL_GetTicks() -  lastTick));
             }
-
-            frameCount++;
             
             SDL_Event e;
             while(SDL_PollEvent(&e)) {

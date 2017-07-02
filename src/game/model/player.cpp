@@ -47,9 +47,6 @@ namespace model {
 
     void Player::fly() {
         this->flying = true;
-        
-        //Play jump sound effect.
-
         if(rand()%2) Sound::getInstance().playChunk(assets::JUMP_LOW_1);
         else Sound::getInstance().playChunk(assets::JUMP_LOW_2);
     };
