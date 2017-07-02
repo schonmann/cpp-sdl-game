@@ -26,7 +26,8 @@ namespace scene {
 
     void MenuScene::update(float dt) {
 
-        if(Input::getInstance().isPressed(SDL_SCANCODE_W)) {
+        if(Input::getInstance().isPressed(SDL_SCANCODE_W) || Input::getInstance().isPressed(SDL_SCANCODE_A) || 
+            Input::getInstance().isPressed(SDL_SCANCODE_S) || Input::getInstance().isPressed(SDL_SCANCODE_D)) {
             PlayScene * scene = new PlayScene(this->game);
             this->game->setScene(scene);
         }

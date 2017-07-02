@@ -26,7 +26,7 @@ namespace model {
     };
 
     void Menu::update(float dt) {
-        SDL_Surface * message = TTF_RenderText_Solid(this->font, "Press  W  to  fly!", this->color);
+        SDL_Surface * message = TTF_RenderText_Solid(this->font, "Use  W A S D  to  fly!", this->color);
 
         this->loadTexture(message, 1, 1);
 

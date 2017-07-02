@@ -81,16 +81,16 @@ namespace model {
     void Player::handleInput() {
         Input * input = &Input::getInstance();
 
-        if(input->isPressed(SDL_SCANCODE_D)) this->goRight();
-        else if(input->isPressed(SDL_SCANCODE_A)) this->goLeft();
+        if(input->isPressed(SDL_SCANCODE_D) || input->isPressed(SDL_SCANCODE_RIGHT)) this->goRight();
+        else if(input->isPressed(SDL_SCANCODE_A) || input->isPressed(SDL_SCANCODE_LEFT)) this->goLeft();
         else this->stayIdle();
 
-        if(input->isPressed(SDL_SCANCODE_W)) {
+        if(input->isPressed(SDL_SCANCODE_W) || input->isPressed(SDL_SCANCODE_UP)) {
             if(this->isGrounded()) this->jump();
             else if (this->getDY() > 0 && !this->flying) this->fly();
         }
 
-        if(input->isPressed(SDL_SCANCODE_S)) {
+        if(input->isPressed(SDL_SCANCODE_S) || input->isPressed(SDL_SCANCODE_DOWN)) {
             this->setDY(1.0);
         } 
     };
