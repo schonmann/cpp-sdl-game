@@ -11,11 +11,11 @@ namespace core{
     };
 
     void Sound::playMusic(char * path) {
-        Mix_PlayMusic(this->music, 0);
+        Mix_PlayMusic(this->music, -1);
     };
 
     void Sound::playChunk(char * path) {
-        Mix_PlayChannel( -1, this->chunks[path], 0 );
+        Mix_PlayChannel( -1, this->chunks[path], 0);
     };
 
     Sound::Sound() {
