@@ -3,6 +3,7 @@
 #include <game.h>
 #include <graphics.h>
 #include <play_scene.h>
+#include <menu_scene.h>
 #include <sound.h>
 #include <assets.h>
 
@@ -11,7 +12,7 @@ using namespace std;
 namespace game {
 
     Game::Game() {
-        scene::PlayScene * s = new scene::PlayScene();
+        scene::MenuScene * s = new scene::MenuScene(this);
         this->setScene(s);
     };
 
@@ -19,9 +20,9 @@ namespace game {
         static Game *instance = new Game();
         return instance;
     };
-    
+
     void Game::init() {
         cout << "Game: Initialized" << endl;
-        Sound::getInstance().startPlaying(assets::MAIN_MUSIC);
+        Sound::getInstance().playMusic(assets::MAIN_MUSIC);
     };
 }

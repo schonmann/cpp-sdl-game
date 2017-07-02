@@ -4,7 +4,7 @@
 #include <abstract_object.h>
 #include <graphics_config.h>
 #include <player_config.h>
-#include <util.h>
+#include <mathutils.h>
 #include <limits>
 
 using namespace core;
@@ -25,10 +25,12 @@ namespace model {
         this->w = 0;
         this->h = 0;
         this->texture = NULL;
+        this->animation = new Animation();
     };
 
     AbstractObject::~AbstractObject() {
-
+        SDL_DestroyTexture(this->texture);
+        delete this->animation;
     };
 
     void AbstractObject::draw(Renderer *renderer) {
@@ -47,6 +49,7 @@ namespace model {
         this->updateDY(dt);
         this->updateX(dt);
         this->updateY(dt);
+
         this->animation->update(dt);
     };
 

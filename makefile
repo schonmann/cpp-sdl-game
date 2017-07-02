@@ -8,7 +8,7 @@ debug: all.o
 # Compile all .cpp object files for future linking.
 
 all.o: cleanb4
-	find . -type f -name '*.cpp' -exec sh -c 'g++ {} -Iinclude -c $(basename {} .cpp)' \;
+	find . -type f -name '*.cpp' -exec sh -c 'g++ {} -Iinclude -c $(basename {} .cpp) -lm' \;
 
 cleanb4:
 	-rm *.o

@@ -12,8 +12,6 @@ namespace game{
             bool paused;
         protected:
             AbstractGame();
-            void setScene(scene::AbstractScene * scene);
-            scene::AbstractScene * currentScene();
         public:
             bool isRunning();
             virtual void init();
@@ -21,5 +19,7 @@ namespace game{
             virtual void draw(core::Renderer * renderer);
             void setPaused(bool paused);
             void setRunning(bool running);
+            void setScene(scene::AbstractScene * scene);
+            scene::AbstractScene * currentScene();
     };
 }

@@ -22,6 +22,7 @@ namespace model {
             Vector2 bounds_ddx,bounds_ddy;
 
             animation::Animation *animation;
+            SDL_Texture * texture;
 
             int layer;
 
@@ -33,7 +34,6 @@ namespace model {
             virtual void updateX(float dt);
             virtual void updateY(float dt);
         public:
-            SDL_Texture * texture;
 
             AbstractObject();
             ~AbstractObject();

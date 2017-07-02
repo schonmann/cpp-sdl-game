@@ -1,6 +1,7 @@
+#pragma once
+
 #include <abstract_game.h>
 #include <renderer.h>
-#include <play_scene.h>
 
 namespace game {
     class Game : public AbstractGame {

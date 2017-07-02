@@ -3,7 +3,10 @@
 #include <player.h>
 #include <assets.h>
 #include <input.h>
+#include <sound.h>
 #include <iostream>
+#include <time.h>
+#include <mathutils.h>
 
 using namespace core;
 
@@ -22,18 +25,29 @@ namespace model {
             setBoundsDY(-playerConfig::MAX_DY, playerConfig::MAX_DY);
 
         this->flying = false;
+        this->inputEnabled = false;
+        this->score = 0;
     };
 
     Player::~Player() {
-
+        
     };
 
     void Player::jump() {
         this->setDY(playerConfig::JUMP_SPEED);
     };
+    
+    void Player::setInputEnabled(bool inputEnabled) {
+        this->inputEnabled = inputEnabled;
+    };
 
     void Player::fly() {
         this->flying = true;
+        
+        //Play jump sound effect.
+
+        if(rand()%2) Sound::getInstance().playChunk(assets::JUMP_LOW_1);
+        else Sound::getInstance().playChunk(assets::JUMP_LOW_2);
     };
 
     void Player::goRight() {
@@ -54,7 +68,7 @@ namespace model {
 
     void Player::interpolateFly(float dt) {
         this->addDDY(-playerConfig::FLY_ACCEL);
-        if(this->getDY() <= -.5) {
+        if(this->getDY() <= -.6) {
             this->setDDY(0.002);
             this->flying = false;
         }
@@ -66,25 +80,27 @@ namespace model {
 
     void Player::handleInput() {
         Input * input = &Input::getInstance();
-        
-        if(input->isPressed(SDL_SCANCODE_RIGHT)) this->goRight();
-        else if(input->isPressed(SDL_SCANCODE_LEFT)) this->goLeft();
-        else this->stayIdle();
-        
-        bool spacePressed = input->isPressed(SDL_SCANCODE_SPACE);
 
-        if(spacePressed) {
+        if(input->isPressed(SDL_SCANCODE_D)) this->goRight();
+        else if(input->isPressed(SDL_SCANCODE_A)) this->goLeft();
+        else this->stayIdle();
+
+        if(input->isPressed(SDL_SCANCODE_W)) {
             if(this->isGrounded()) this->jump();
-            else if (this->getDY() > 0) this->fly();
+            else if (this->getDY() > 0 && !this->flying) this->fly();
+        }
+
+        if(input->isPressed(SDL_SCANCODE_S)) {
+            this->setDY(1.0);
         } 
     };
 
     void Player::update(float dt) {
-        this->handleInput();
+        if(this->inputEnabled) this->handleInput();
 
         if(this->flying) this->interpolateFly(dt);
-
-        this->score += this->getDX() * dt;
+        
+        this->score = util::max(this->score + this->getDX() * dt, this->score);
 
         this->updateDX(dt);
         this->updateDY(dt);

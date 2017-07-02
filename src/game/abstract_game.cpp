@@ -35,7 +35,6 @@ namespace game {
     };
 
     void AbstractGame::update(float dt) {
-        if(this->scene == NULL) cout << "NULL!" << endl;
         if(!this->paused) this->scene->update(dt);
     };
 

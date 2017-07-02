@@ -5,6 +5,7 @@
 #include <graphics.h>
 #include <string>
 #include <map>
+#include <input.h>
 
 using namespace std;
 using namespace core;
@@ -26,6 +27,8 @@ namespace scene{
         public:
             virtual void draw(Renderer * renderer);
             virtual void update(float dt);
+            AbstractScene();
+            ~AbstractScene();
             void addObject(string key, AbstractObject *newObject);
     };
 }

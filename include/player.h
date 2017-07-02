@@ -18,6 +18,7 @@ namespace model {
             void stayIdle();
             void interpolateFly(float dt);
             bool flying;
+            bool inputEnabled;
             bool isGrounded();
             double score;
         public:
@@ -25,5 +26,6 @@ namespace model {
             ~Player();
             void update(float dt);
             double getScore();
+            void setInputEnabled(bool inputEnabled);
     };
 }
