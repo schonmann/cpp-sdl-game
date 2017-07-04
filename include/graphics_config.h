@@ -15,6 +15,7 @@ namespace graphicsConfig {
     extern Uint32 RENDERER_FLAGS;
     extern int MAX_FPS;
     extern int TICKS_PER_FRAME;
+    extern int TIMESTEP;
     extern int IMG_FLAGS;
     extern int SDL_INIT_FLAGS;
 }

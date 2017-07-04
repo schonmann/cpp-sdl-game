@@ -17,7 +17,7 @@ namespace scene{
     };
 
     AbstractScene * AbstractScene::addObject(string key, AbstractObject *newObject) {
-        this->objects[key] = newObject;
+        this->objects[key] = newObject; 
         this->objectHeap.push(newObject);
     };
 
