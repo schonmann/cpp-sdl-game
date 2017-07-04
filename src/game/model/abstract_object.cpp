@@ -245,7 +245,7 @@ namespace model {
 	AbstractObject * AbstractObject::setWidth(double w) {
         this->w = w * this->sx;
 		return this;
-    };\
+    };
 
     double AbstractObject::getWidth() {
         return this->w * this->sx;
