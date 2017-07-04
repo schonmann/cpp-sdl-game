@@ -6,18 +6,19 @@
 #include <iostream>
 
 namespace scene {
-    MenuScene::MenuScene(game::Game * game) {
-        this->game = game;
 
+    MenuScene::MenuScene(game::Game * game) : AbstractScene(game) {
+        this->game = game;
+        
         Player * player = new Player();
         Background * background = new Background(player);
         Menu * menu = new Menu();
 
         player->setInputEnabled(false);
 
-        this->objects["background"] = background;
-        this->objects["player"] = player;
-        this->objects["menu"] = menu;
+        this->addObject("background", background);
+        this->addObject("player", player);
+        this->addObject("menu", menu);
     };
 
     MenuScene::~MenuScene() {
@@ -30,6 +31,7 @@ namespace scene {
             input->isPressed(SDL_SCANCODE_S) || input->isPressed(SDL_SCANCODE_D) || 
             input->isPressed(SDL_SCANCODE_UP) || input->isPressed(SDL_SCANCODE_LEFT) || 
             input->isPressed(SDL_SCANCODE_DOWN) || input->isPressed(SDL_SCANCODE_RIGHT)) {
+
             PlayScene * scene = new PlayScene(this->game);
             this->game->setScene(scene);
         }

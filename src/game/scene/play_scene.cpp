@@ -6,18 +6,20 @@
 #include <score_board.h>
 #include <enemy.h>
 #include <game.h>
-#include <game_over.h>
 #include <collision.h>
 #include <iostream>
+#include <game_over_scene.h>
 
 using namespace std;
 using namespace model;
-using namespace game;
+
+namespace game {
+    class Game;
+}
 
 namespace scene{
     
-    PlayScene::PlayScene(Game * game) {
-        this->game = game;
+    PlayScene::PlayScene(game::Game * game) : AbstractScene(game) {
         
         Player * player = new Player();
         Background * background = new Background(player);
@@ -26,12 +28,10 @@ namespace scene{
 
         player->setInputEnabled(true);
         
-        this->objects["background"] = background;
-        this->objects["player"] = player;
-        this->objects["scoreboard"] = scoreboard;
-        this->objects["enemy"] = enemy;
-
-        this->gameOverTime = 0;
+        this->addObject("background", background);
+        this->addObject("player", player);
+        this->addObject("scoreboard", scoreboard);
+        this->addObject("enemy", enemy);
     };
 
     PlayScene::~PlayScene() {
@@ -39,20 +39,13 @@ namespace scene{
     };
 
     void PlayScene::update(float dt) {
-        if(this->gameOverTime != 0) {
-            Uint32 now = SDL_GetTicks();
-            if(now - this->gameOverTime >= 1500) {
-                MenuScene * menu = new MenuScene(this->game);
-                this->game->setScene(menu);
-            }
-            return;
+
+        if(util::circularCollisionBetween(this->getObject("enemy"), this->getObject("player"))) {
+            GameOverScene * gameOverScene = new GameOverScene(this->game);
+            gameOverScene->addObjects(this->objects);
+            this->game->setScene(gameOverScene);
         }
 
-        if(util::circularCollisionBetween(this->objects["enemy"], this->objects["player"])) {
-            this->objects["game_over"] = new GameOver();
-            this->objects["game_over"]->update(dt);
-            this->gameOverTime = SDL_GetTicks();
-        }
         AbstractScene::update(dt);
     };
 }

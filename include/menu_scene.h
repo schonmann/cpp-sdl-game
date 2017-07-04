@@ -5,8 +5,6 @@
 
 namespace scene {
     class MenuScene : public AbstractScene {
-        private:
-			game::Game * game;
         public:
             MenuScene(game::Game * game);
             ~MenuScene();
